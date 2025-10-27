@@ -1,0 +1,504 @@
+Slide,Dataset,Tumor,Scanner,Origin,Species,domain
+1,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+2,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+3,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+4,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+5,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+6,test,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+7,test,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+8,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+9,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+10,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+11,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+12,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+13,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+14,test,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+15,test,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+16,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+17,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+18,test,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+19,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+20,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+21,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+22,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+23,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+24,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+25,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+26,test,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+27,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+28,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+29,test,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+30,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+31,test,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+32,test,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+33,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+34,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+35,test,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+36,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+37,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+38,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+39,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+40,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+41,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+42,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+43,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+44,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+45,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+46,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+47,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+48,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+49,train,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+50,test,human breast cancer,Hamammatsu XR,UMC Utrecht,Human,1a
+51,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+52,test,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+53,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+54,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+55,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+56,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+57,test,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+58,test,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+59,test,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+60,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+61,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+62,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+63,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+64,test,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+65,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+66,test,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+67,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+68,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+69,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+70,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+71,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+72,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+73,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+74,test,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+75,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+76,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+77,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+78,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+79,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+80,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+81,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+82,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+83,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+84,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+85,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+86,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+87,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+88,test,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+89,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+90,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+91,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+92,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+93,test,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+94,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+95,test,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+96,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+97,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+98,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+99,train,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+100,test,human breast cancer,Hamamatsu S360,UMC Utrecht,Human,1b
+101,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+102,test,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+103,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+104,test,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+105,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+106,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+107,test,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+108,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+109,test,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+110,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+111,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+112,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+113,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+114,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+115,test,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+116,test,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+117,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+118,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+119,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+120,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+121,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+122,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+123,test,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+124,test,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+125,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+126,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+127,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+128,test,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+129,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+130,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+131,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+132,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+133,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+134,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+135,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+136,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+137,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+138,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+139,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+140,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+141,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+142,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+143,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+144,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+145,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+146,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+147,test,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+148,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+149,train,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+150,test,human breast cancer,Aperio CS2,UMC Utrecht,Human,1c
+201,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+202,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+203,test,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+204,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+205,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+206,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+207,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+208,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+209,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+210,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+211,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+212,test,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+213,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+214,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+215,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+216,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+217,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+218,test,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+219,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+220,test,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+221,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+222,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+223,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+224,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+225,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+226,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+227,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+228,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+229,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+230,test,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+231,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+232,test,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+233,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+234,test,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+235,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+236,test,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+237,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+238,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+239,test,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+240,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+241,test,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+242,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+243,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+244,train,canine lung cancer,3D Histech,VMU Vienna,Canine,2
+245,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+246,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+247,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+248,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+249,test,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+250,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+251,test,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+252,test,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+253,test,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+254,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+255,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+256,test,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+257,test,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+258,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+259,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+260,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+261,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+262,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+263,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+264,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+265,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+266,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+267,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+268,test,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+269,test,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+270,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+271,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+272,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+273,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+274,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+275,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+276,test,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+277,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+278,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+279,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+280,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+281,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+282,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+283,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+284,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+285,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+286,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+287,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+288,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+289,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+290,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+291,test,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+292,test,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+293,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+294,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+295,test,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+296,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+297,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+298,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+299,train,canine lymphoma,3D Histech,VMU Vienna,Canine,3
+300,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+301,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+302,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+303,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+304,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+305,test,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+306,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+307,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+308,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+309,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+310,test,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+311,test,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+312,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+313,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+314,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+315,test,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+316,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+317,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+318,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+319,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+320,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+321,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+322,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+323,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+324,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+325,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+326,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+327,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+328,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+329,test,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+330,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+331,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+332,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+333,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+334,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+335,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+336,test,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+337,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+338,test,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+339,test,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+340,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+341,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+342,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+343,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+344,test,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+345,test,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+346,test,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+347,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+348,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+349,train,canine cutaneous mast cell tumor,Aperio CS2,FU Berlin,Canine,4
+350,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+351,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+352,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+353,test,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+354,test,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+355,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+356,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+357,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+358,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+359,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+360,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+361,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+362,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+363,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+364,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+365,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+366,test,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+367,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+368,test,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+369,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+370,test,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+371,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+372,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+373,test,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+374,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+375,test,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+376,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+377,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+378,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+379,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+380,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+381,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+382,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+383,test,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+384,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+385,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+386,test,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+387,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+388,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+389,test,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+390,test,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+391,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+392,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+393,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+394,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+395,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+396,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+397,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+398,test,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+399,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+400,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+401,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+402,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+403,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+404,train,human neuroendocrine tumor,Hamamatsu XR,UMC Utrecht,Human,5
+405,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+406,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+407,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+408,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+409,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+410,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+411,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+412,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+413,test,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+414,test,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+415,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+416,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+417,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+418,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+419,test,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+420,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+421,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+422,test,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+423,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+424,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+425,test,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+426,test,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+427,test,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+428,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+429,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+430,train,canine soft tissue sarcoma,3D Histech,AMC NewYork,Canine,6a
+431,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+432,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+433,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+434,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+435,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+436,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+437,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+438,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+439,test,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+440,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+441,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+442,test,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+443,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+444,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+445,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+446,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+447,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+448,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+449,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+450,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+451,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+452,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+453,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+454,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+455,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+456,test,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+457,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+458,test,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+459,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+460,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+461,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+462,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+463,test,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+464,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+465,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+466,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+467,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+468,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+469,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+470,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+471,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+472,test,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+473,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+474,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+475,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+476,test,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+477,test,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+478,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+479,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+480,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+481,test,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+482,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+483,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+484,test,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+485,test,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+486,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+487,test,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+488,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+489,train,canine soft tissue sarcoma,3D Histech,AMC New York,Canine,6a
+490,train,canine soft tissue sarcoma,3D Histech,VMU Vienna,Canine,6b
+491,test,canine soft tissue sarcoma,3D Histech,VMU Vienna,Canine,6b
+492,train,canine soft tissue sarcoma,3D Histech,VMU Vienna,Canine,6b
+493,train,canine soft tissue sarcoma,3D Histech,VMU Vienna,Canine,6b
+494,train,canine soft tissue sarcoma,3D Histech,VMU Vienna,Canine,6b
+495,train,canine soft tissue sarcoma,3D Histech,VMU Vienna,Canine,6b
+496,train,canine soft tissue sarcoma,3D Histech,VMU Vienna,Canine,6b
+497,test,canine soft tissue sarcoma,3D Histech,VMU Vienna,Canine,6b
+498,train,canine soft tissue sarcoma,3D Histech,VMU Vienna,Canine,6b
+499,train,canine soft tissue sarcoma,3D Histech,VMU Vienna,Canine,6b
+500,train,canine soft tissue sarcoma,3D Histech,VMU Vienna,Canine,6b
+501,train,canine soft tissue sarcoma,3D Histech,VMU Vienna,Canine,6b
+502,train,canine soft tissue sarcoma,3D Histech,VMU Vienna,Canine,6b
+503,train,canine soft tissue sarcoma,3D Histech,VMU Vienna,Canine,6b
+504,test,canine soft tissue sarcoma,3D Histech,VMU Vienna,Canine,6b
+505,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+506,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+507,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+508,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+509,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+510,test,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+511,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+512,test,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+513,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+514,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+515,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+516,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+517,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+518,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+519,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+520,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+521,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+522,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+523,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+524,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+525,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+526,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+527,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+528,test,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+529,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+530,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+531,test,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+532,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+533,test,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+534,test,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+535,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+536,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+537,test,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+538,test,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+539,test,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+540,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+541,test,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+542,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+543,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+544,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+545,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+546,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+547,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+548,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+549,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+550,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+551,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+552,test,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
+553,train,human melanoma,Hamamatsu XR,UMC Utrecht,Human,7
