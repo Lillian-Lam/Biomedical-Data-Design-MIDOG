@@ -184,10 +184,10 @@ def analyze_mmd_differences(features_df, category_column, category_name, save_pl
     if save_plot:
         #create the directory 
         os.makedirs(output_dir, exist_ok=True)  
-        filename = f"{output_dir}/mmd_heatmap_{category_column}.png"
+        filename = f'{output_dir}/mmd_heatmap_{category_column}_{data_type}.png'
         plt.savefig(filename, dpi=300, bbox_inches='tight')
         print(f'Heatmap saved to: {filename}')
-        plt.savefig(f'mmd_heatmap_{category_column}.png', dpi=300, bbox_inches='tight')
+        plt.savefig(f'mmd_heatmap_{category_column}_{data_type}.png', dpi=300, bbox_inches='tight')
 
     plt.show()
 
@@ -233,5 +233,6 @@ if __name__ == '__main__':
           save_plot=True,
           output_dir='mmd_results',
           data_type=test['data_type'])
+
 
 
