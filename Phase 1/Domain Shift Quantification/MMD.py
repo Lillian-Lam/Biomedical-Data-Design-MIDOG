@@ -206,31 +206,32 @@ if __name__ == '__main__':
         #load dataset
         df = load_and_prepare_data(feature_path, metadata_path)
 
-    #running the different control tests 
-    tests = [
-        {'name': f'Tumor Type (Hamamatsu XR only) [{data_type}]',
-         'data': df[df['scanner'] == 'Hamamatsu XR'],
-         'cat_col': 'tumor_type',
-         'cat_name': 'Tumor Type', 
-         'data_type': data_type},
-        {'name': f'Scanner (Human Breast Cancer only) [{data_type}]',
-         'data': df[df['tumor_type'] == 'human breast cancer'],
-         'cat_col': 'scanner',
-         'cat_name': 'Scanner', 
-         'data_type': data_type},
-        {'name': f'Origin (Canine Soft Tissue Sarcoma only) [{data_type}]',
-         'data': df[df['tumor_type'] == 'canine soft tissue sarcoma'],
-         'cat_col': 'origin',
-         'cat_name': 'Origin',
-         'data_type': data_type}]
-    for test in tests:
-      print(f'{test['name']}')
+        #running the different control tests 
+        tests = [
+            {'name': f'Tumor Type (Hamamatsu XR only) [{data_type}]',
+             'data': df[df['scanner'] == 'Hamamatsu XR'],
+             'cat_col': 'tumor_type',
+             'cat_name': 'Tumor Type', 
+             'data_type': data_type},
+            {'name': f'Scanner (Human Breast Cancer only) [{data_type}]',
+             'data': df[df['tumor_type'] == 'human breast cancer'],
+             'cat_col': 'scanner',
+             'cat_name': 'Scanner', 
+             'data_type': data_type},
+            {'name': f'Origin (Canine Soft Tissue Sarcoma only) [{data_type}]',
+             'data': df[df['tumor_type'] == 'canine soft tissue sarcoma'],
+             'cat_col': 'origin',
+             'cat_name': 'Origin',
+             'data_type': data_type}]
+        for test in tests:
+          print(f'{test['name']}')
+    
+          mmd_matrix, cats = analyze_mmd_differences(
+          test['data'], 
+          test['cat_col'], 
+          test['cat_name'],
+          save_plot=True,
+          output_dir='mmd_results',
+          data_type=test['data_type'])
 
-      mmd_matrix, cats = analyze_mmd_differences(
-      test['data'], 
-      test['cat_col'], 
-      test['cat_name'],
-      save_plot=True,
-      output_dir='mmd_results',
-      data_type=test['data_type'])
 
