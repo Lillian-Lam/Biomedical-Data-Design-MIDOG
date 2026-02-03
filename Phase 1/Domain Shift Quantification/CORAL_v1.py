@@ -12,7 +12,7 @@ CSV_PATH = 'midog.csv'
 OUTPUT_DIR = 'coral_unified_results'
 
 # ---------------------------------------------------------
-# PART 1: CORE ALGORITHMS (CORAL & Split Strategy)
+# PART 1: CORE ALGORITHMS 
 # ---------------------------------------------------------
 def compute_covariance(features):
     """
