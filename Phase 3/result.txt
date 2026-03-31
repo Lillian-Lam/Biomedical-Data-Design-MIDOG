@@ -1,0 +1,139 @@
+ Starting training for 10 epochs (lr=0.0001)...
+Epoch 1/10
+Training: 100%|█████████████████████████████████████████████████████████████| 643/643 [01:18<00:00,  8.20it/s, Loss=0.5987, Acc=72.01%]
+Evaluating Val: 100%|██████████████████████████████████████████████████████████████████████████████████| 72/72 [00:04<00:00, 16.24it/s]
+
+ Train Loss: 0.5406 | Train Acc: 72.01%
+ Val Loss: 0.4213 | Val Acc: 80.29%
+ Current LR: 0.0001
+ Saved best model (val_acc: 80.29%)
+Epoch 2/10
+Training: 100%|█████████████████████████████████████████████████████████████| 643/643 [01:28<00:00,  7.22it/s, Loss=1.1397, Acc=80.80%]
+Evaluating Val: 100%|██████████████████████████████████████████████████████████████████████████████████| 72/72 [00:04<00:00, 15.23it/s]
+
+ Train Loss: 0.4234 | Train Acc: 80.80%
+ Val Loss: 0.3784 | Val Acc: 83.81%
+ Current LR: 0.0001
+ Saved best model (val_acc: 83.81%)
+Epoch 3/10
+Training: 100%|█████████████████████████████████████████████████████████████| 643/643 [01:42<00:00,  6.25it/s, Loss=0.1970, Acc=81.97%]
+Evaluating Val: 100%|██████████████████████████████████████████████████████████████████████████████████| 72/72 [00:04<00:00, 14.71it/s]
+
+ Train Loss: 0.3961 | Train Acc: 81.97%
+ Val Loss: 0.3709 | Val Acc: 83.37%
+ Current LR: 0.0001
+Epoch 4/10
+Training: 100%|█████████████████████████████████████████████████████████████| 643/643 [01:22<00:00,  7.82it/s, Loss=0.1507, Acc=83.24%]
+Evaluating Val: 100%|██████████████████████████████████████████████████████████████████████████████████| 72/72 [00:04<00:00, 16.65it/s]
+
+ Train Loss: 0.3756 | Train Acc: 83.24%
+ Val Loss: 0.3670 | Val Acc: 83.85%
+ Current LR: 5e-05
+ Saved best model (val_acc: 83.85%)
+Epoch 5/10
+Training: 100%|█████████████████████████████████████████████████████████████| 643/643 [01:24<00:00,  7.65it/s, Loss=1.1097, Acc=84.84%]
+Evaluating Val: 100%|██████████████████████████████████████████████████████████████████████████████████| 72/72 [00:04<00:00, 16.21it/s]
+
+ Train Loss: 0.3458 | Train Acc: 84.84%
+ Val Loss: 0.3532 | Val Acc: 85.00%
+ Current LR: 5e-05
+ Saved best model (val_acc: 85.00%)
+Epoch 6/10
+Training: 100%|█████████████████████████████████████████████████████████████| 643/643 [01:24<00:00,  7.57it/s, Loss=0.7871, Acc=85.23%]
+Evaluating Val: 100%|██████████████████████████████████████████████████████████████████████████████████| 72/72 [00:04<00:00, 17.10it/s]
+
+ Train Loss: 0.3396 | Train Acc: 85.23%
+ Val Loss: 0.3375 | Val Acc: 85.44%
+ Current LR: 5e-05
+ Saved best model (val_acc: 85.44%)
+Epoch 7/10
+Training: 100%|█████████████████████████████████████████████████████████████| 643/643 [01:02<00:00, 10.31it/s, Loss=0.4917, Acc=85.97%]
+Evaluating Val: 100%|██████████████████████████████████████████████████████████████████████████████████| 72/72 [00:02<00:00, 26.35it/s]
+
+ Train Loss: 0.3285 | Train Acc: 85.97%
+ Val Loss: 0.3477 | Val Acc: 85.26%
+ Current LR: 5e-05
+Epoch 8/10
+Training: 100%|█████████████████████████████████████████████████████████████| 643/643 [01:18<00:00,  8.20it/s, Loss=0.1993, Acc=86.07%]
+Evaluating Val: 100%|██████████████████████████████████████████████████████████████████████████████████| 72/72 [00:04<00:00, 16.94it/s]
+
+ Train Loss: 0.3227 | Train Acc: 86.07%
+ Val Loss: 0.3224 | Val Acc: 85.83%
+ Current LR: 2.5e-05
+ Saved best model (val_acc: 85.83%)
+Epoch 9/10
+Training: 100%|█████████████████████████████████████████████████████████████| 643/643 [01:21<00:00,  7.86it/s, Loss=0.5076, Acc=87.10%]
+Evaluating Val: 100%|██████████████████████████████████████████████████████████████████████████████████| 72/72 [00:03<00:00, 18.16it/s]
+
+ Train Loss: 0.3058 | Train Acc: 87.10%
+ Val Loss: 0.3247 | Val Acc: 86.54%
+ Current LR: 2.5e-05
+ Saved best model (val_acc: 86.54%)
+Epoch 10/10
+Training: 100%|█████████████████████████████████████████████████████████████| 643/643 [01:24<00:00,  7.60it/s, Loss=0.3620, Acc=87.30%]
+Evaluating Val: 100%|██████████████████████████████████████████████████████████████████████████████████| 72/72 [00:04<00:00, 15.70it/s]
+
+ Train Loss: 0.2951 | Train Acc: 87.30%
+ Val Loss: 0.3322 | Val Acc: 86.85%
+ Current LR: 2.5e-05
+ Saved best model (val_acc: 86.85%)
+
+ Plotting training history...
+
+ Training history plot saved as 'training_history.png'
+
+
+========== Final Test with MC Dropout Uncertainty ==========
+MC Dropout Inference: 100%|██████████████████████████████████████████████████████████████████████████| 109/109 [01:04<00:00,  1.69it/s]
+
+===== Uncertainty Analysis =====
+  Total samples         : 3459
+  Reliable (entropy < 0.15): 1520  (43.9%)
+  Ambiguous (entropy >= 0.15): 1939  (56.1%)
+  Mean predictive entropy: 0.2752
+  Mean mutual information: 0.0005
+  Mean max probability   : 0.8821
+
+--- All Samples ---
+              precision    recall  f1-score   support
+
+ Non-mitotic       0.84      0.89      0.86      1814
+     Mitotic       0.87      0.81      0.84      1645
+
+    accuracy                           0.85      3459
+   macro avg       0.85      0.85      0.85      3459
+weighted avg       0.85      0.85      0.85      3459
+
+
+--- Reliable Subset (1520 samples) ---
+              precision    recall  f1-score   support
+
+ Non-mitotic       0.98      1.00      0.99       918
+     Mitotic       1.00      0.96      0.98       602
+
+    accuracy                           0.98      1520
+   macro avg       0.99      0.98      0.98      1520
+weighted avg       0.98      0.98      0.98      1520
+
+
+--- Ambiguous Subset (1939 samples, recommend pathologist review) ---
+              precision    recall  f1-score   support
+
+ Non-mitotic       0.70      0.78      0.74       896
+     Mitotic       0.79      0.72      0.75      1043
+
+    accuracy                           0.75      1939
+   macro avg       0.75      0.75      0.75      1939
+weighted avg       0.75      0.75      0.75      1939
+
+
+Confusion Matrix (Test Set - All):
+[[1613  201]
+ [ 317 1328]]
+
+ Key Metrics (Test Set):
+     Sensitivity (Recall): 0.807
+     Specificity: 0.889
+     Precision: 0.869
+     F1-Score: 0.837
+     Best Val Accuracy achieved: 86.85%
