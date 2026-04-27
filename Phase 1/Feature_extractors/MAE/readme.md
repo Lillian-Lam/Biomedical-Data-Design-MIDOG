@@ -7,7 +7,7 @@ Extract patch-level features from MIDOG++ WSIs using a self-supervised MAE ViT-B
 ```bash
 pip install torch torchvision timm pillow tqdm pandas
 ```
-The script sets `HF_ENDPOINT=https://hf-mirror.com` for users who cannot reach huggingface.co directly. Remove that line if not needed.
+The script sets `HF_ENDPOINT=https://hf-mirror.com` for those who cannot reach huggingface.co directly. 
 
 ## Usage
 Edit `image_folder` and `output_path` at the top of `mae.py`, then:
