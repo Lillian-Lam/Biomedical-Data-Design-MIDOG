@@ -1,0 +1,23 @@
+# DINOv3 Feature Extraction
+
+## Background
+Extract patch-level features from MIDOG++ WSIs using a self-supervised DINOv3 ViT-Base encoder for the Phase 1 domain-shift study.
+
+## Install
+```bash
+pip install torch torchvision timm pillow tqdm
+```
+The script sets `HF_ENDPOINT=https://hf-mirror.com` for those who cannot reach huggingface.co directly. Remove that line if not needed.
+
+## Usage
+Edit `image_folder` and `output_path` at the top of `dinov3.py`, then:
+```bash
+python dinov3.py
+```
+
+## Key files
+- `dinov3.py` - tiles WSIs into 224x224 patches (tissue-filtered), runs them through `vit_base_patch16_dinov3.lvd1689m`, saves features.
+- `umap_dinov3.ipynb` - 2D UMAP visualization of the embeddings.
+
+## Output
+- `midog_dinov3_features_patches.pkl` - patch features for downstream similarity / UMAP analysis.
