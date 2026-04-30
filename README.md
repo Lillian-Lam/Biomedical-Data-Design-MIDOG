@@ -1,4 +1,4 @@
-# Biomedical-Data-Design-MIDOG
+# Biomedical-Data-Design-MIDOG++
 
 Domain-aware mitotic figure detection on MIDOG++ histology whole-slide images, built for the JHU Biomedical Data Design course.
 
