@@ -1,10 +1,4 @@
 # Biomedical Data Design II: MIDOG Phase 1
-
-**Group:** MIDHist  
-**Course:** Biomedical Data Design I/II  
-**Academic Year:** 2025–2026  
-**Team Members:** Naina Misra, Lillian Lam, Yang Cao  
-
 ## Project Overview
 
 This repository contains the code and documentation for **Phase 1** of our Biomedical Data Design II project, focused on **domain shift quantification, feature extraction, and similarity analysis** for the MIDOG histopathology dataset.
