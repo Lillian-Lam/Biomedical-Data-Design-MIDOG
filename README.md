@@ -1,6 +1,5 @@
 # Biomedical-Data-Design-MIDOG++
 
-Domain-aware mitotic figure detection on MIDOG++ histology whole-slide images, built for the JHU Biomedical Data Design course.
 
 ## Background
 Mitotic count is a key tumor-grading signal but it is labor-intensive and variable across observers. Automating it is hard because feature appearance shifts with scanner, lab, species, and tumor type, so a model can easily learn acquisition cues instead of biology. This repo addresses that in three phases.
