@@ -3,6 +3,14 @@
 ## Background
 Mitotic count is a key tumor-grading signal but it is labor-intensive and variable across observers. Automating it is hard because feature appearance shifts with scanner, lab, species, and tumor type, so a model can easily learn acquisition cues instead of biology. This repo addresses that in three phases.
 
+## Data Acquisition
+This project uses the MIDOG++ dataset. To run the pipeline:
+
+Download the images and metadata from the official [MIDOG++](https://github.com/DeepMicroscopy/MIDOGpp) GitHub repository. 
+```bash
+git clone https://github.com/Xiyue-Wang/TransPath.git](https://github.com/DeepMicroscopy/MIDOGpp
+```
+
 ## Pipeline
 
 ### [Phase 1 - Domain Shift Quantification](Phase%201/)
@@ -22,6 +30,8 @@ Add MC Dropout to the Phase 2 classifier and report per-patch confidence so low-
 pip install torch torchvision pandas numpy pillow tqdm scikit-learn matplotlib seaborn scipy umap-learn pycocotools timm
 # Phase 2 deconvolution variants
 pip install histomicstk
+# Phase 2 all cell annotations in WSI
+pip install cellpose
 # Phase 1 / CTransPath
 git clone https://github.com/Xiyue-Wang/TransPath.git
 git clone https://github.com/DBO-DKFZ/multistain_cyclegan_normalization.git
