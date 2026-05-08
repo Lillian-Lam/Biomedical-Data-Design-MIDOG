@@ -1,5 +1,5 @@
 # Phase 2 - Mitosis Classification with Domain-Adversarial Training
-
+![Model architecture](https://github.com/Lillian-Lam/Biomedical-Data-Design-MIDOG/blob/main/Phase%202/multiscale_dann.png)
 ## Background
 Train a mitotic / non-mitotic patch classifier on MIDOG++ that generalizes across scanners, labs, species, and tumor types. We compare two ResNet50-based controls against a multi-domain DANN that adversarially suppresses scanner / lab / species / tumor cues. An optional H&E color-deconvolution variant runs the classifier on the hematoxylin channel only.
 
