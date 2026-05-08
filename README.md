@@ -48,6 +48,5 @@ python "Phase 3/base_uncertainty.py"
 
 ## Repo layout
 - `Phase 1/`, `Phase 2/`, `Phase 3/` - see each folder's README.
-- `MScoco.ipynb` - convert MIDOG++ annotations to MS COCO format.
 - `Presentation/` - dated slide decks from class check-ins with results of code output.
 - `LICENSE`
