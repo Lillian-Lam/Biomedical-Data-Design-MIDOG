@@ -28,6 +28,7 @@ Edit the `WEIGHTS`, `SIGMA`, and file paths at the top of each script.
 4. Weighted fuse: `MMD * 0.5 + Wasserstein * 0.3 + CORAL * 0.2` (default in `similarity_wsi.py`).
 
 ## Key files
+- `midog.csv` - slide-level metadata
 - `similarity.py` - domain-level fusion from existing CSVs.
 - `similarity_wsi.py` - WSI-level fusion direct from a feature pickle.
 - `Final_Similarity_Matrix.csv` / `WSI_Fused_Similarity_Matrix.csv` - example outputs.
