@@ -60,7 +60,7 @@ python final_model.py
 
 ### Preprocessing (`preprocessing/`)
 - `cell_segmentation_to_coco.py` - optional: runs [Cellpose](https://cellpose.readthedocs.io/en/latest/index.html) cyto model on whole slide images to generate cell/nuclei bounding boxes in COCO format. Use this if you have raw WSI files without existing COCO annotations. Outputs *_wsi_coco.json files.
-- `train_test_split.py` - 80/20 split per domain combination (Tumor x Scanner x Origin x Species), copies images into `images_split/`.
+- `train_test_split.py` - 80/10/10 split (train/val/test) per domain combination (Tumor x Scanner x Origin x Species), copies images into `images_split/`.
 - `224_patch_around_bbox.py` - extracts 224×224 patches around each COCO bbox, writes `patch_metadata.json`.
 - `024_wsi_coco.json`, `026_wsi_coco.json` - example COCO annotation files.
 
