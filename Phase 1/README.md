@@ -1,4 +1,5 @@
 # Biomedical Data Design II: MIDOG Phase 1
+![Model architecture](https://github.com/Lillian-Lam/Biomedical-Data-Design-MIDOG/blob/main/Phase%201/quantify_domain_shift.png)
 ## Project Overview
 
 This repository contains the code and documentation for **Phase 1** of our Biomedical Data Design II project, focused on **domain shift quantification, feature extraction, and similarity analysis** for the MIDOG histopathology dataset.
