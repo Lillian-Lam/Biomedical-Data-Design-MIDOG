@@ -6,9 +6,9 @@ import matplotlib.pyplot as plt
 
 #most of the code follows from Yang's similarity.py
 METRIC_DIRS = {
-    'MMD': 'mmd_unified_results',
-    'CORAL': 'coral_unified_results',
-    'Wasserstein': 'wasserstein_results'}
+    'MMD': '../Domain Shift Quantification/mmd_unified_results',
+    'CORAL': '../Domain Shift Quantification/coral_unified_results',
+    'Wasserstein': '../Domain Shift Quantification/wasserstein_results'}
 
 #Weights: MMD (0.5), Wass (0.3), CORAL (0.2)
 WEIGHTS ={'MMD': 0.5, 'Wasserstein': 0.3, 'CORAL': 0.2}
