@@ -16,28 +16,35 @@ slides = df.drop_duplicates('Slide')
 slides['domain'] = slides['Tumor']+'_'+slides['Scanner']+'_'+slides['Origin']+'_'+slides['Species']
 
 #split into train/test
-train, test = [], []
+train, val, test = [], [], []
 for domain in slides['domain'].unique():
     d = slides[slides['domain'] == domain]['Slide'].tolist()
-    n = max(1, int(np.ceil(len(d) * 0.2)))
-    test.extend(np.random.choice(d, n, replace=False))
-    train.extend([s for s in d if s not in test])
+    n_test = max(1, int(np.ceil(len(d) * 0.1)))
+    n_val = max(1, int(np.ceil(len(d) * 0.1)))
+    test.extend(np.random.choice(d, n_test, replace=False))
+    remaining = [s for s in d if s not in test]
+    val.extend(np.random.choice(remaining, n_val, replace=False))
+    train.extend([s for s in remaining if s not in val])
 
 df[df['Slide'].isin(train)].to_csv('train.csv', index=False, sep=';')
+df[df['Slide'].isin(val)].to_csv('val.csv', index=False, sep=';')
 df[df['Slide'].isin(test)].to_csv('test.csv', index=False, sep=';')
 
 #create empty folders to put the train and test images
 os.makedirs('images_split/train', exist_ok=True)
+os.makedirs('images_split/val', exist_ok=True)
 os.makedirs('images_split/test', exist_ok=True)
 
 
 #I wanted to copy the images into a new folder because 
 #we might be doing domain shift qunatification etc. in the original folder
-def copy_images_to_folders(image_source_dir, train_slides, test_slides):
+def copy_images_to_folders(image_source_dir, train_slides, val_slides, test_slides):
     train_count = 0
+    val_count = 0
     test_count = 0
 
     train_set = set(train_slides)
+    val_set = set(val_slides)
     test_set = set(test_slides)
     
     print(f'Looking for images in: {image_source_dir}')
@@ -72,20 +79,25 @@ def copy_images_to_folders(image_source_dir, train_slides, test_slides):
                         dest_file = os.path.join('images_split/train', file)
                         shutil.copy2(source_file, dest_file)
                         train_count += 1
+                    elif slide_id in val_set:
+                        dest_file = os.path.join('images_split/val', file)
+                        shutil.copy2(source_file, dest_file)
+                        val_count += 1
                     elif slide_id in test_set:
                         dest_file = os.path.join('images_split/test', file)
                         shutil.copy2(source_file, dest_file)
                         test_count += 1
-                    #else: slide_id not in our train/test sets
+                    #else: slide_id not in our train/val/test sets
     
-    return train_count, test_count
+    return train_count, val_count, test_count
     
 #CHANGE THIS TO IMAGES PATH
 IMAGE_SOURCE_DIR = './images'  
 
 if os.path.exists(IMAGE_SOURCE_DIR):
-    train_img_count, test_img_count = copy_images_to_folders(IMAGE_SOURCE_DIR, train, test)
+    train_img_count, val_img_count, test_img_count = copy_images_to_folders(IMAGE_SOURCE_DIR, train, val, test)
     print(f'Copied {train_img_count} images to images_split/train/')
+    print(f'Copied {val_img_count} images to images_split/val/')
     print(f'Copied {test_img_count} images to images_split/test/')
 else:
     print(f"Warning: Image source directory '{IMAGE_SOURCE_DIR}' not found.")
