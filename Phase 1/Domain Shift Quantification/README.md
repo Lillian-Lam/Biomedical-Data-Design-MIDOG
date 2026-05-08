@@ -20,6 +20,7 @@ python "Proxy A-Distance.py"
 Each script first does a global pass (by `domain` / `Scanner` / `Tumor` / `Origin`), then a controlled pass that fixes one factor and varies another.
 
 ## Key files
+- `midog.csv` - slide-level metadata
 - `MMD_v1.py` - Maximum Mean Discrepancy (distribution shift).
 - `CORAL_v1.py` - covariance alignment.
 - `Wasserstein Distance_v1.py` - marginal transport distance.
