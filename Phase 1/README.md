@@ -19,7 +19,5 @@ Phase 1/
 │   └── Scripts for extracting image embeddings using pretrained models
 │
 ├── Similarity/
-│   └── Code for generating similarity matrices and comparing domains
-│
-└── README.md
-    └── Project overview, methodology summary, and repository documentation
+    └── Code for generating similarity matrices and comparing domains
+
