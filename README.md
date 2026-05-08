@@ -1,5 +1,5 @@
 # Biomedical-Data-Design-MIDOG++
-
+![Model architecture](https://github.com/Lillian-Lam/Biomedical-Data-Design-MIDOG/blob/main/Phase%201/quantify_domain_shift.png)
 ## Background
 Mitotic count is a key tumor-grading signal but it is labor-intensive and variable across observers. Automating it is hard because feature appearance shifts with scanner, lab, species, and tumor type, so a model can easily learn acquisition cues instead of biology. This repo addresses that in three phases.
 
