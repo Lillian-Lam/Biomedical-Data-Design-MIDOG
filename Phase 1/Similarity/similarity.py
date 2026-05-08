@@ -6,11 +6,11 @@ import os
 
 # ================= CONFIGURATION =================
 # 1. File Paths 
+SOURCE_DIR = "../Domain Shift Quantification"
 FILE_PATHS = {
-    'MMD': 'MMD_domain_Global_By_Domain.csv',          
-    'CORAL': 'CORAL_domain_Global_By_Domain.csv',      
-    'Wasserstein': 'Wasserstein_domain_Global_By_Domain.csv' 
-}
+    'MMD': f"{SOURCE_DIR}/mmd_unified_results/Global/MMD_domain_Global_By_Domain.csv",
+    'CORAL': f"{SOURCE_DIR}/coral_unified_results/Global/CORAL_domain_Global_By_Domain.csv",
+    'Wasserstein': f"{SOURCE_DIR}/wasserstein_results/Global/Wasserstein_domain_Global_By_Domain.csv"}
 
 # 2. Weights (Must sum to 1.0)
 # Strategy: Heavy emphasis on MMD (Mean), supported by Geometry (Wass) and Shape (CORAL)
