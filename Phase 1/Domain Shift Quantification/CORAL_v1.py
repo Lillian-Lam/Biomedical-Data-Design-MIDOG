@@ -7,7 +7,7 @@ import os
 from pathlib import Path
 
 # ================= CONFIGURATION =================
-PKL_PATH = 'midog_features_patches_normalized(cyclegan).pkl'
+PKL_PATH = '../Feature_extractors/results_norm/midog_features_patches_normalized.pkl'
 CSV_PATH = 'midog.csv'
 OUTPUT_DIR = 'coral_unified_results'
 
