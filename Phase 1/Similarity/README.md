@@ -41,10 +41,23 @@ Raw Shift Scoring (`domain_shift_score.py`)
 - `domain_shift_score.py` - Fuses raw distances into a weighted shift score.
 - `similarity.py` - domain-level fusion into [0, 1] similarity
 - `similarity_wsi.py` - WSI-level fusion direct from a feature pickle.
-- 
+  
 Results folder:
 - `Final_Similarity_Matrix.csv` / `WSI_Fused_Similarity_Matrix.csv` - example outputs.
 - `slide_505_similarity_ranking.csv` - example similarity ranking for slide 505.
+
+
+# Customization: Using Different Feature Extractors
+If you wish to use a different feature extraction model (CLIP, dinoV3, etc), follow these steps:
+
+1. Generate your feature embeddings from one of the `Phase 1/Feature_extractors`. It should save them in a .pkl dictionary format: { 'filename.tiff': {'features': np.array, ...} }.
+2. In the quantification scripts (MMD_v1.py, CORAL_v1.py, etc.), update the PKL_PATH variable:
+
+```Python
+# Change this to point to your new feature file
+PKL_PATH = 'path/to/your/custom_features.pkl'
+```
+3. Ensure your new features match the expected dimensions (e.g., 768 for CTransPath) or update the visualization scripts accordingly.
 
 ## Output
 `similarity.py` / `similarity_wsi.py`: A fused similarity matrix CSV plus a heatmap PNG in `similarity_matrix_output/` or `wsi_fusion_results/`.
