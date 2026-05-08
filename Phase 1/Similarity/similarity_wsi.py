@@ -9,7 +9,8 @@ from pathlib import Path
 from scipy.stats import wasserstein_distance
 
 # ================= CONFIGURATION =================
-PKL_PATH = 'midog_features_patches_normalized(cyclegan).pkl' 
+#change this if you are using a different feature extractor
+PKL_PATH = '../Feature_extractors/results_norm/midog_features_patches_normalized.pkl'
 CSV_PATH = 'midog.csv'
 OUTPUT_DIR = 'wsi_fusion_results'
 
