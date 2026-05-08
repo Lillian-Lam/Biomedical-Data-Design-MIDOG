@@ -98,3 +98,5 @@ model.eval()
 
 ## Output
 Per script: trained weights (`.pth`), training-history plots, classification reports, and (for DANN) UMAP plots of the learned features colored by each domain factor.
+
+**For `final_model.py`**: Additional outputs include ROC curve (`auc_curve.png`), per-tumor-type F1 heatmap (`f1_heatmap_tumor.png`), and multi-panel UMAP visualization (`umap_dann.png`). All saved to `results/`.
