@@ -79,8 +79,7 @@ from huggingface_hub import hf_hub_download
 
 checkpoint_path = hf_hub_download(
     repo_id="lillianlam/multi-stage-dann-model-mitotic-figures",
-    filename="best_dann_model.pth"
-)
+    filename="best_dann_model.pth")
 
 # Reconstruct the model using final_model.py, then load weights
 model = DANNModel(num_classes=2, num_domain_classes=..., lambda_val=0.0)
