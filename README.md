@@ -37,9 +37,9 @@ python "Phase 1/Domain Shift Quantification/MMD_v1.py"
 python "Phase 1/Similarity/similarity_wsi.py"
 
 # Phase 2: split, patch, train
-python "Phase 2/train_test_split.py"
-python "Phase 2/224_patch_around_bbox.py"
-python "Phase 2/dann_image_aug.py"
+python "Phase 2/preprocessing/train_test_split.py"
+python "Phase 2/preprocessing/224_patch_around_bbox.py"
+python "Phase 2/final_model.py"
 
 # Phase 3: train with MC Dropout, write per-patch confidence
 python "Phase 3/base_uncertainty.py"
