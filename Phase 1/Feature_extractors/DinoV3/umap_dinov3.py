@@ -108,7 +108,7 @@ def umap_visualizations():
 def main():
     #UMAP analysis
     results_df = umap_visualizations()
-    results_df.to_csv('umap_results_with_metadata_diov3.csv', index=False)
+    results_df.to_csv('umap_results_with_metadata_dinov3.csv', index=False)
     print("\nUMAP visualization complete!")
     print(f"Results saved to: umap_results_with_metadata_dinov3.csv")
     print(f"Plots saved as: umap_*_patches.png")
