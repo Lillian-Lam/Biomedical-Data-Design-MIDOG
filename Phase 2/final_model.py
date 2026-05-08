@@ -25,11 +25,14 @@ import seaborn as sns
 #classifier stabilises before adversarial pressure kicks in
 #CHANGE THE FILE PATHS!!!!!!!!!!!
 train_path = "./train_224_patch/"
+val_path = "./val_224_patch/"
 test_path = "./test_224_patch/"
 train_metadata = os.path.join(train_path, 'patch_metadata.json')
+val_metadata = os.path.join(val_path, 'patch_metadata.json')
 test_metadata = os.path.join(test_path, 'patch_metadata.json')
-#csv files with columns: Slide;Tumor;Species;Origin;Scanner (semicolon separated)
+#csv files
 train_csv = "./train.csv"
+val_csv = "./val.csv"
 test_csv = "./test.csv"
 
 #model parameters
@@ -125,7 +128,7 @@ class MitosisDataset(Dataset):
     def __init__(self, metadata_path, patches_dir, csv_path, is_train=True):
         with open(metadata_path, 'r') as f:
             self.metadata= json.load(f)
-        self.patches_dir  patches_dir
+        self.patches_dir= patches_dir
 
         #load the csv and join to metadata on image_id == Slide
         #csv uses semicolon separator based on the MIDOG dataset format
@@ -481,19 +484,17 @@ def train_one_epoch(model, loader, mitosis_loss_fn, domain_loss_fn, optimizer, d
         _, predicted=mitosis_logits.max(1)
         total+=labels.size(0)
         correct+=predicted.eq(labels).sum().item()
-        n_batches+=1icted.eq(labels).sum().item()
         n_batches += 1
 
-          pbar.set_postfix({
-            'Loss': f'{loss.item():.4f}',
-            'Mit': f'{loss_mitosis.item():.4f}',
-            'Dom': f'{loss_domains.item():.4f}',
-            'lambda': f'{lambda_val:.3f}',
-            'a': f'{adaptive_weight:.3f}',
-            'Grad': f'{grad_norm:.3f}',
-            'Acc': f'{100.*correct/total:.1f}%'})
+        pbar.set_postfix({'Loss': f'{loss.item():.4f}',
+                          'Mit': f'{loss_mitosis.item():.4f}',
+                          'Dom': f'{loss_domains.item():.4f}',
+                          'lambda': f'{lambda_val:.3f}',
+                          'a': f'{adaptive_weight:.3f}',
+                          'Grad': f'{grad_norm:.3f}',
+                          'Acc': f'{100.*correct/total:.1f}%'})
 
-     avg_grad_norm = total_grad_norm / n_batches if n_batches > 0 else 0.0
+    avg_grad_norm = total_grad_norm / n_batches if n_batches > 0 else 0.0
     print(f'  Average gradient norm: {avg_grad_norm:.4f}')
     return (total_loss/n_batches,
             total_mitosis_loss/n_batches,
@@ -513,6 +514,7 @@ def evaluate(model, loader, mitosis_loss_fn, domain_loss_fn, device):
     total=0
     all_preds=[]
     all_labels=[]
+    all_probs=[] 
     #track correct predictions per domain attribute separately
     domain_correct= {attr: 0 for attr in domain_attr}
     domain_total= {attr: 0 for attr in domain_attr}
@@ -582,7 +584,7 @@ def plot_training_history(history, chance_levels, results_dir='results'):
 
     #panel 1: mitosis loss only
     axes[0].plot(epochs, history['train_mitosis_loss'], 'b-', label='Train Mitosis Loss', linewidth=2)
-    axes[0].plot(epochs, history['test_mitosis_loss'], 'r-', label='Test Mitosis Loss', linewidth=2)
+    axes[0].plot(epochs, history['val_mitosis_loss'], 'r-', label='Validation Mitosis Loss', linewidth=2)
     axes[0].set_xlabel('Epochs')
     axes[0].set_ylabel('Loss')
     axes[0].set_title('Mitosis Loss')
@@ -591,7 +593,7 @@ def plot_training_history(history, chance_levels, results_dir='results'):
 
     #panel 2: domain loss only 
     axes[1].plot(epochs, history['train_domain_loss'], 'b-', label='Train Domain Loss', linewidth=2)
-    axes[1].plot(epochs, history['test_domain_loss'], 'r-', label='Test Domain Loss', linewidth=2)
+    axes[1].plot(epochs, history['val_domain_loss'], 'r-', label='Validation Domain Loss', linewidth=2)
     axes[1].set_xlabel('Epochs')
     axes[1].set_ylabel('Loss')
     axes[1].set_title('Domain Loss\n(rising = GRL working)')
@@ -600,7 +602,7 @@ def plot_training_history(history, chance_levels, results_dir='results'):
 
     #panel 3: mitosis accuracy
     axes[2].plot(epochs, history['train_acc'], 'b-', label='Training Accuracy', linewidth=2)
-    axes[2].plot(epochs, history['test_acc'], 'r-', label='Validation Accuracy', linewidth=2)
+    axes[2].plot(epochs, history['val_acc'], 'r-', label='Validation Accuracy', linewidth=2)
     axes[2].set_xlabel('Epochs')
     axes[2].set_ylabel('Accuracy (%)')
     axes[2].set_title('Mitosis Accuracy')
@@ -612,9 +614,9 @@ def plot_training_history(history, chance_levels, results_dir='results'):
     for i, attr in enumerate(domain_attr):
         ax = axes[i + 3]
         train_d_accs = [d[attr] for d in history['train_domain_accs']]
-        test_d_accs = [d[attr] for d in history['test_domain_accs']]
+        val_d_accs = [d[attr] for d in history['val_domain_accs']]
         ax.plot(epochs, train_d_accs, 'b-', label='Training', linewidth=2)
-        ax.plot(epochs, test_d_accs, 'r-', label='Validation', linewidth=2)
+        ax.plot(epochs, val_d_accs, 'r-', label='Validation', linewidth=2)
         #dashed green line shows what a random classifier would score
         #if domain acc trends toward this then adaptation is working
         ax.axhline(y=chance_levels[attr], color='g', linestyle='--',
@@ -811,12 +813,15 @@ def main():
     #is_train=True applies augmentation to training set only
     #test set always gets clean transforms so evaluation is consistent across runs
     train_dataset = MitosisDataset(train_metadata, train_path, train_csv, is_train=True)
-    test_dataset  = MitosisDataset(test_metadata,  test_path,  test_csv,  is_train=False)
+    val_dataset = MitosisDataset(val_metadata, val_path, val_csv, is_train=False)
+    test_dataset = MitosisDataset(test_metadata, test_path, test_csv, is_train=False)
 
     #num_workers=0 loads data in the main process to avoid shared memory (/dev/shm) crashes
     #worker processes get killed by the OS when /dev/shm is too small on HPC clusters
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True,
                               num_workers=4, collate_fn=collate_fn, pin_memory=True)
+    val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False,
+                            num_workers=0, collate_fn=collate_fn)
     test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False,
                              num_workers=0, collate_fn=collate_fn)
 
@@ -864,13 +869,15 @@ def main():
         'train_mitosis_loss': [],
         'train_domain_loss': [],
         'train_acc': [],
-        'test_loss': [],
-        'test_acc': [],
+        'val_loss': [],  
+        'val_mitosis_loss': [], 
+        'val_domain_loss': [],  
+        'val_acc': [],  
         'train_domain_accs': [],
-        'test_domain_accs': [],
+        'val_domain_accs': [],  
         'lambda_vals': []}
         
-    best_test_acc = 0
+    best_val_acc = 0
 
     print(f'\n Starting multi-domain DANN training for {num_epochs} epochs...')
     print(f'   Backbone LR: {lr_backbone} | Heads LR: {lr_heads}')
@@ -887,8 +894,8 @@ def main():
             model, train_loader, mitosis_loss_fn, domain_loss_fn, optimizer, device, lam)
 
         #evaluate on both test and train so we can plot domain accs for both splits
-        test_loss, test_acc, test_domain_accs, _, _, _, _, test_mitosis_loss, test_domain_loss = evaluate(
-            model, test_loader, mitosis_loss_fn, domain_loss_fn, device)
+        val_loss, val_acc, val_domain_accs, _, _, _, _, val_mitosis_loss, val_domain_loss = evaluate(
+            model, val_loader, mitosis_loss_fn, domain_loss_fn, device)
         _, _, train_domain_accs, _, _, _, _, _, _ = evaluate(
             model, train_loader, mitosis_loss_fn, domain_loss_fn, device)
 
@@ -897,27 +904,27 @@ def main():
         history['train_mitosis_loss'].append(train_mitosis_loss)
         history['train_domain_loss'].append(train_domain_loss)
         history['train_acc'].append(train_acc)
-        history['test_loss'].append(test_loss)
-        history['test_mitosis_loss'].append(test_mitosis_loss)
-        history['test_domain_loss'].append(test_domain_loss)
-        history['test_acc'].append(test_acc)
+        history['val_loss'].append(val_loss)
+        history['val_mitosis_loss'].append(val_mitosis_loss)
+        history['val_domain_loss'].append(val_domain_loss)
+        history['val_acc'].append(val_acc)
         history['train_domain_accs'].append(train_domain_accs)
-        history['test_domain_accs'].append(test_domain_accs)
+        history['val_domain_accs'].append(val_domain_accs)
         history['lambda_vals'].append(lam)
 
         print(f'\n Summary:')
-        print(f'   Train Mitosis Acc: {train_acc:.2f}% | Test Mitosis Acc: {test_acc:.2f}%')
+        print(f'   Train Mitosis Acc: {train_acc:.2f}% | Val Mitosis Acc: {val_acc:.2f}%')
         print(f'   Train Loss: {train_loss:.4f} (Mitosis: {train_mitosis_loss:.4f}, Domain: {train_domain_loss:.4f})')
-        print(f'   Test  Loss: {test_loss:.4f}  (Mitosis: {test_mitosis_loss:.4f}, Domain: {test_domain_loss:.4f})')
-        print(f'\n   Domain Accuracies (train / test):')
+        print(f'   Val  Loss: {val_loss:.4f}  (Mitosis: {val_mitosis_loss:.4f}, Domain: {val_domain_loss:.4f})')
+        print(f'\n   Domain Accuracies (train / val):')
         for attr in domain_attr:
-            print(f'      {attr}: {train_domain_accs[attr]:.2f}% / {test_domain_accs[attr]:.2f}% (chance={chance_levels[attr]:.1f}%)')
+            print(f'      {attr}: {train_domain_accs[attr]:.2f}% / {val_domain_accs[attr]:.2f}% (chance={chance_levels[attr]:.1f}%)')
 
         #save best model based on test accuracy
-        if test_acc > best_test_acc:
-            best_test_acc = test_acc
+        if val_acc > best_val_acc:
+            best_val_acc = val_acc
             torch.save(model.state_dict(), os.path.join(results_dir, 'best_dann_model.pth'))
-            print(f'   Saved best model (test_acc: {test_acc:.2f}%)')
+            print(f'   Saved best model (val_acc: {val_acc:.2f}%)')
 
     print('\n Plotting training history...')
     plot_training_history(history, chance_levels, results_dir)
@@ -951,7 +958,7 @@ def main():
     print(f'   Specificity:          {specificity:.3f}')
     print(f'   Precision:            {precision:.3f}')
     print(f'   F1-Score:             {f1:.3f}')
-    print(f'   Best Test Accuracy:   {best_test_acc:.2f}%')
+    print(f'   Best Validation Accuracy:   {best_val_acc:.2f}%')
     print(f'\n Final Domain Classifier Accuracies (test set):')
     for attr in domain_attr:
         print(f'   {attr}: {test_domain_accs[attr]:.2f}% (chance = {chance_levels[attr]:.1f}%)')
