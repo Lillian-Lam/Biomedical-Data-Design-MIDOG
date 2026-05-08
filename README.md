@@ -42,7 +42,7 @@ Python 3.9+, GPU recommended. Each phase has its own README with detailed steps.
 Run the phases in order. Each script has path / hyperparameter constants at the top - edit those before running.
 ```bash
 # Phase 1: pick an encoder, extract features, then quantify and fuse
-python "Phase 1/Feature_extractors/CTransPath/ctranspath_cycleGAN_norm.py"
+python "Phase 1/Feature_extractors/CTransPath/ctranspath_cycleGAN_norm.py" --skip_normalization
 python "Phase 1/Domain Shift Quantification/MMD_v1.py"
 python "Phase 1/Similarity/similarity_wsi.py"
 
