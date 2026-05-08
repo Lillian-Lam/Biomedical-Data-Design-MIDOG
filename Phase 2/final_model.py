@@ -893,7 +893,7 @@ def main():
         train_loss, train_mitosis_loss, train_domain_loss, train_acc = train_one_epoch(
             model, train_loader, mitosis_loss_fn, domain_loss_fn, optimizer, device, lam)
 
-        #evaluate on both test and train so we can plot domain accs for both splits
+        #evaluate on both val and train so we can plot domain accs for both splits
         val_loss, val_acc, val_domain_accs, _, _, _, _, val_mitosis_loss, val_domain_loss = evaluate(
             model, val_loader, mitosis_loss_fn, domain_loss_fn, device)
         _, _, train_domain_accs, _, _, _, _, _, _ = evaluate(
