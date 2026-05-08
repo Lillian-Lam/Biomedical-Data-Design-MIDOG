@@ -96,13 +96,13 @@ def umap_visualizations():
                 linewidth=0.5,
             )
 
-        plt.title(f'UMAP Projection of Features, Colored by {category}', fontsize=16, pad=20)
+        plt.title(f'DinoV3 UMAP Projection of Features, Colored by {category}', fontsize=16, pad=20)
         plt.xlabel('UMAP Component 1', fontsize=14)
         plt.ylabel('UMAP Component 2', fontsize=14)
         if category != 'Slide':
             plt.legend(title=category, bbox_to_anchor=(1.05, 1), loc='upper left')
         plt.tight_layout()
-        plt.savefig(f'umap_{category.lower()}_patches.png', dpi=300, bbox_inches='tight')
+        plt.savefig(f'dinov3_umap_{category.lower()}_patches.png', dpi=300, bbox_inches='tight')
     return final_df
 
 def main():
