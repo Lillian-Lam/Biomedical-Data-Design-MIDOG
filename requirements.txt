@@ -1,11 +1,23 @@
+#core ML & Data
 torch==2.8.0
 torchvision==0.23.0
 numpy==1.23.5
 Pillow==11.3.0
 tqdm==4.67.3
-matplotlib==3.9.4
 pandas==2.3.3
-umap-learn==0.5.11
 scikit-learn==1.6.1
 scipy==1.13.1
 numba==0.60.0
+
+#visualization & analysis
+matplotlib==3.9.4
+seaborn
+umap-learn==0.5.11
+numba==0.60.0
+
+#Phase 1 & 2 Specialized Tools
+timm
+cellpose
+pycocotools
+openslide-python
+histomicstk
