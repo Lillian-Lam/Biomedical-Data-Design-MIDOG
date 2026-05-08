@@ -6,6 +6,8 @@ Train a mitotic / non-mitotic patch classifier on MIDOG++ that generalizes acros
 ## Install
 ```bash
 pip install torch torchvision pandas numpy pillow tqdm scikit-learn matplotlib pycocotools umap-learn
+# Only needed for cell segmentation (preprocessing):
+pip install cellpose scikit-image
 # Only needed for the deconvolution variants:
 pip install histomicstk
 ```
@@ -14,8 +16,9 @@ pip install histomicstk
 ```
 .
 ├── preprocessing/
-│   ├── train_test_split.py
-│   ├── 224_patch_around_bbox.py
+│   ├── cell_segmentation_to_coco.py
+│   ├── train_test_split.py   
+│   ├── 224_patch_around_bbox.py               
 │   ├── 024_wsi_coco.json
 │   └── 026_wsi_coco.json
 ├── control_run_cnn.py
@@ -29,11 +32,16 @@ pip install histomicstk
 Run scripts in this order. Edit the path constants at the top of each script.
 
 ```bash
+# 0. (Optional) Generate COCO annotations from unannotated WSIs
+python preprocessing/cell_segmentation_to_coco.py
+
 # 1. Stratified train/test split by (Tumor, Scanner, Origin, Species) domain
 python preprocessing/train_test_split.py
 
-# 2. Crop 224x224 patches centered on each annotation bbox (writes COCO + patch_metadata.json)
-python preprocessing/224_patch_around_bbox.py
+# 2. Crop 224x224 patches centered on each annotation bbox
+#    Run separately for train and test splits
+python preprocessing/224_patch_around_bbox.py --coco_json ./images_split/train/annotations.json --image_dir ./images_split/train/ --output_dir ./images_split/train/224_patches
+python preprocessing/224_patch_around_bbox.py --coco_json ./images_split/test/annotations.json --image_dir ./images_split/test/ --output_dir ./images_split/test/224_patches
 
 # 3a. Baselines (RGB / hematoxylin)
 python control_run_cnn.py
@@ -50,7 +58,8 @@ python final_model.py
 ## Key files
 
 ### Preprocessing (`preprocessing/`)
-- `train_test_split.py` - 80/20 split per domain combination (Tumor × Scanner × Origin × Species), copies images into `images_split/`.
+- `cell_segmentation_to_coco.py` - optional: runs [Cellpose](https://cellpose.readthedocs.io/en/latest/index.html) cyto model on whole slide images to generate cell/nuclei bounding boxes in COCO format. Use this if you have raw WSI files without existing COCO annotations. Outputs *_wsi_coco.json files.
+- `train_test_split.py` - 80/20 split per domain combination (Tumor x Scanner x Origin x Species), copies images into `images_split/`.
 - `224_patch_around_bbox.py` - extracts 224×224 patches around each COCO bbox, writes `patch_metadata.json`.
 - `024_wsi_coco.json`, `026_wsi_coco.json` - example COCO annotation files.
 
