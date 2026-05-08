@@ -18,7 +18,7 @@ import warnings
 warnings.filterwarnings("ignore", category=ConvergenceWarning)
 
 # ================= CONFIGURATION =================
-PKL_PATH = 'midog_feature_patches.pkl'
+PKL_PATH = '../Feature_extractors/results_norm/midog_features_patches_normalized.pkl'
 CSV_PATH = 'midog.csv'
 OUTPUT_DIR = 'proxy_a_distance_results'
 
