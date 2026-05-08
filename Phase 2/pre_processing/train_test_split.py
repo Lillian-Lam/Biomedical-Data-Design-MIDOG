@@ -15,7 +15,7 @@ df['Scanner'] = df['Scanner'].replace('Hamammatsu XR', 'Hamamatsu XR')
 slides = df.drop_duplicates('Slide')
 slides['domain'] = slides['Tumor']+'_'+slides['Scanner']+'_'+slides['Origin']+'_'+slides['Species']
 
-#split into train/test
+#split into train/test/val
 train, val, test = [], [], []
 for domain in slides['domain'].unique():
     d = slides[slides['domain'] == domain]['Slide'].tolist()
