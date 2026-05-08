@@ -19,6 +19,7 @@ python umap_dinov3.py
 ## Key files
 - `dinov3.py` - tiles WSIs into 224x224 patches (tissue-filtered), runs them through `vit_base_patch16_dinov3.lvd1689m`, saves features.
 - `umap_dinov3.py` - makes the 2D UMAP visualization of the embeddings.
+- `midog.csv` - slide-level metadata used to color UMAP plots.
 
 ## Output
 - `midog_dinov3_features_patches.pkl` - patch features for downstream similarity / UMAP analysis.
