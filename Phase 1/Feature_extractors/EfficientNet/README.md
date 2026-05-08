@@ -19,6 +19,7 @@ python umap_efficientnet.py
 - `efficientnet.py` - tiles each WSI into 224x224 patches (tissue-filtered), runs them through EfficientNet-B0, saves features.
 - `umap_efficientnet.py` - 2D UMAP visualization colored by metadata.
 - `umap_results_with_metadata_efficientnet.csv` - UMAP coordinates joined with slide metadata.
+- `midog.csv` - slide-level metadata used to color UMAP plots.
 
 ## Output
 - `midog_efficientnet_features_patches.pkl` - patch features for downstream similarity / UMAP analysis.
