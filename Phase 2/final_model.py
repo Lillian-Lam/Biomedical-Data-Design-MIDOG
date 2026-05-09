@@ -24,16 +24,16 @@ import seaborn as sns
 #lambda ramps from 0 to lambda_max using DANN paper schedule so the mitosis
 #classifier stabilises before adversarial pressure kicks in
 #CHANGE THE FILE PATHS!!!!!!!!!!!
-train_path = "./train_224_patch/"
-val_path = "./val_224_patch/"
-test_path = "./test_224_patch/"
-train_metadata = os.path.join(train_path, 'patch_metadata.json')
-val_metadata = os.path.join(val_path, 'patch_metadata.json')
-test_metadata = os.path.join(test_path, 'patch_metadata.json')
-#csv files
-train_csv = "./train.csv"
-val_csv = "./val.csv"
-test_csv = "./test.csv"
+train_path= "./images_split/train/224_patches/"
+val_path= "./images_split/val/224_patches/"
+test_path= "./images_split/test/224_patches/"
+train_metadata= os.path.join(train_path, 'patch_metadata.json')
+val_metadata= os.path.join(val_path, 'patch_metadata.json')
+test_metadata= os.path.join(test_path, 'patch_metadata.json')
+# The CSV files were saved directly in the root of the repo
+train_csv= "./train.csv"
+val_csv= "./val.csv"
+test_csv= "./test.csv"
 
 #model parameters
 num_epochs= 50
