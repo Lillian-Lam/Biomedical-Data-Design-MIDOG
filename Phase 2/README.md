@@ -28,12 +28,6 @@ pip install histomicstk
 └── final_model.py
 ```
 
-## Configuration & Setup
-Before you even get to the models, the preprocessing scripts need to know where your raw data is.
-
-`preprocessing/train_test_split.py`
-- IMAGE_SOURCE_DIR: Change this to the absolute path of the folder containing your original .tiff files.
-
 ## Usage
 Run scripts in this order. Edit the path constants at the top of each script.
 
@@ -42,22 +36,14 @@ Run scripts in this order. Edit the path constants at the top of each script.
 python preprocessing/cell_segmentation_to_coco.py
 
 # 1. Stratified train/test split by (Tumor, Scanner, Origin, Species) domain
-python preprocessing/train_test_split.py
+#    This script creates train.csv, val.csv, test.csv and copies images to images_split/
+#    Usage: python preprocessing/train_test_split.py <path_to_images_directory>
+python preprocessing/train_test_split.py ./images
 
 # 2. Crop 224x224 patches centered on each annotation bbox
-#    Run separately for train, validation, and test splits
-python "preprocessing/224_patch_around_bbox.py" \
-  --coco_json ./images/MIDOGpp.json \
-  --image_dir ./images_split/train/ \
-  --output_dir ./images_split/train/224_patches/
-python "preprocessing/224_patch_around_bbox.py"
-  --coco_json ./images/MIDOGpp.json \
-  --image_dir ./images_split/val/ \
-  --output_dir ./images_split/val/224_patches/
-python "preprocessing/224_patch_around_bbox.py" \
-  --coco_json ./images/MIDOGpp.json \
-  --image_dir ./images_split/test/ \
-  --output_dir ./images_split/test/224_patches/
+#    This script automatically processes train, validation, and test splits
+#    Usage: python preprocessing/224_patch_around_bbox.py <path_to_coco_json>
+python preprocessing/224_patch_around_bbox.py ./images/MIDOGpp.json
 
 # 3a. Baselines (RGB / hematoxylin)
 python control_run_cnn.py
