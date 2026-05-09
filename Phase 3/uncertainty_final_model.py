@@ -15,6 +15,7 @@ from torch.autograd import Function
 import umap
 import seaborn as sns
 
+#combined from base_uncertainty.py (Yang's code) and final_model.py
 
 #multi-domain DANN mitosis classifier
 #Feature Extractor: learns image representations (ResNet50 backbone, multi-scale)
