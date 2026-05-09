@@ -11,13 +11,18 @@ import matplotlib.pyplot as plt
 from torch.utils.data import Dataset, DataLoader
 import pandas as pd
 import clip
+import sys
 
 # Set device
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # Configuration
 model_name = 'ViT-B/32' # CLIP model
-image_folder = '/home/caoyang/BDD/MIDOGpp-main/images'
+if len(sys.argv) < 2:
+    print("Usage: python clip_feature_extractor.py <path_to_images_directory>")
+    sys.exit(1)
+
+image_folder = sys.argv[1]
 output_path = './midog_clip_features_patches.pkl'
 
 # Patch parameters
