@@ -21,7 +21,7 @@ os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
 # Using MAE ViT-Base model (standard architecture for MAE)
 model_name = 'mae_vit_base_patch16'
 if len(sys.argv) < 2:
-    print("Usage: python mae_feature_extractor.py <path_to_images_directory>")
+    print("Usage: python mae.py <path_to_images_directory>")
     sys.exit(1)
 
 image_folder = sys.argv[1]
