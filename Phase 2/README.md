@@ -28,6 +28,13 @@ pip install histomicstk
 └── final_model.py
 ```
 
+## Preprocessing Paths
+Before you even get to the models, the preprocessing scripts need to know where your raw data is.
+
+`preprocessing/train_test_split.py`
+- IMAGE_SOURCE_DIR: Change this to the absolute path of the folder containing your original .tiff files.
+- CSV_PATH: Point this to your datasets_xvalidation.csv.
+
 ## Usage
 Run scripts in this order. Edit the path constants at the top of each script.
 
