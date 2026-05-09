@@ -9,24 +9,14 @@ pip install torch torchvision timm pillow tqdm
 ```
 The script sets `HF_ENDPOINT=https://hf-mirror.com` for those who cannot reach huggingface.co directly. Remove that line if not needed.
 
-## Configuration: Setting Your Image Path
-Before running any extraction script, you must update the path to where your MIDOG++ images are stored on your local machine.
 
-1. Open the script you wish to run.
-2. Locate the Configuration section at the top.
-3. Update the image_folder variable:
-
-```Python
-# CHANGE THIS: Point to your local folder containing .tiff files
-image_folder = '/path/to/your/local/MIDOGpp/images'
-```
 
 ## Usage
-Edit `image_folder` and `output_path` at the top of `dinov3.py`, then:
+## Usage
+extract features and plot umap
 ```bash
-python dinov3.py
+python dinov3.py /path/to/your/images
 python umap_dinov3.py
-```
 
 ## Key files
 - `dinov3.py` - tiles WSIs into 224x224 patches (tissue-filtered), runs them through `vit_base_patch16_dinov3.lvd1689m`, saves features.
