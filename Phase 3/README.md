@@ -10,6 +10,7 @@ pip install torch torchvision pandas numpy pillow tqdm scikit-learn matplotlib u
 
 ## Usage
 Inputs: the `images_split/{train,val,test}/224_patches` folders and `patch_metadata.json` files produced in Phase 2.
+
 All files should be in the root directory before running the script:
 ```bash
 #baseline (no domain adaptation)
