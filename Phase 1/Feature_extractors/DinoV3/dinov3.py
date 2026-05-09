@@ -20,7 +20,11 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 # Correct timm model name for DINOv3 Base (Patch 16)
 # Reference: https://huggingface.co/timm/vit_base_patch16_dinov3.lvd1689m
 model_name = 'vit_base_patch16_dinov3.lvd1689m' 
-image_folder = '/home/caoyang/BDD/MIDOGpp-main/images'
+if len(sys.argv) < 2:
+    print("Usage: python dinov3_feature_extractor.py <path_to_images_directory>")
+    sys.exit(1)
+
+image_folder = sys.argv[1]
 output_path = './midog_dinov3_features_patches.pkl'
 
 # Patch parameters
