@@ -9,14 +9,12 @@ pip install torch torchvision timm pillow tqdm
 ```
 The script sets `HF_ENDPOINT=https://hf-mirror.com` for those who cannot reach huggingface.co directly. Remove that line if not needed.
 
-
-
-## Usage
 ## Usage
 extract features and plot umap
 ```bash
-python dinov3.py /path/to/your/images
+python dinov3.py /path/to/your/midog_images
 python umap_dinov3.py
+```
 
 ## Key files
 - `dinov3.py` - tiles WSIs into 224x224 patches (tissue-filtered), runs them through `vit_base_patch16_dinov3.lvd1689m`, saves features.
