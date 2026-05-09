@@ -6,9 +6,14 @@ import matplotlib.pyplot as plt
 import os
 from pathlib import Path
 from scipy.stats import wasserstein_distance  # Key import for original formula
+import sys
 
 # ================= CONFIGURATION =================
-PKL_PATH = '../Feature_extractors/results_norm/midog_features_patches_normalized.pkl'
+if len(sys.argv) < 2:
+    print("Usage: python 'Wasserstein Distance_v1.py' <path_to_pkl_file>")
+    sys.exit(1)
+
+PKL_PATH = sys.argv[1]
 CSV_PATH = 'midog.csv'
 OUTPUT_DIR = 'wasserstein_results'
 
