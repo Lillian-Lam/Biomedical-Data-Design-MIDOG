@@ -11,8 +11,12 @@ The goal of this phase is to provide a data-driven foundation for later model de
 
 ## Repository Structure
 
+
 ```text
 Phase 1/
+│
+├── `document.md` - contains information on all the functions in every phase 1 script
+│
 │
 ├── Domain Shift Quantification/
 │   └── Code and documentation for measuring domain shift using statistical and distribution-based methods
@@ -23,3 +27,4 @@ Phase 1/
 ├── Similarity/
     └── Code for generating similarity matrices and comparing domains
 
+```

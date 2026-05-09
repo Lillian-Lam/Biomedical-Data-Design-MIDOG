@@ -21,6 +21,7 @@ pip install histomicstk
 │   ├── 224_patch_around_bbox.py               
 │   ├── 024_wsi_coco.json
 │   └── 026_wsi_coco.json
+├── document.md
 ├── control_run_cnn.py
 ├── control_run_cnn_deconvolution.py
 ├── dann_w_image_aug.py
@@ -72,6 +73,9 @@ python final_model.py
 - `dann_w_image_aug.py` - main multi-domain DANN: ResNet50 backbone + mitosis head + 4 adversarial domain heads (tumor, species, origin, scanner) with GRL and ramped λ schedule.
 - `dann_deconvolution.py` - DANN variant on the hematoxylin channel.
 - `final_model.py` - final model. A multi-domain DANN with a pretrained ResNet50 backbone split into 4 stages (stem+layer1 through layer4). Intermediate feature maps from layer2 (512-d), layer3 (1024-d), and layer4 (2048-d) are each globally average-pooled and concatenated into a 3584-d multi-scale feature vector. Training augmentations include random flips, rotation, `RandomResizedCrop`, `ElasticTransform`, `ColorJitter`, shot noise, Gaussian blur, and defocus blur to simulate cross-scanner variation.
+
+
+- `document.md` - contains information on all the functions in every phase 2 script
 
 ## Pretrained Weights
 

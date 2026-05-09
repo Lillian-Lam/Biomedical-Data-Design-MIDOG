@@ -26,7 +26,8 @@ Key knobs at the top of the file:
 
 ## Key files
 `base_uncertainty.py` is the baseline. It trains a plain ResNet50 with a single dropout layer inserted before the final classification head. No domain adaptation, just a clean uncertainty-aware binary classifier. Use this to establish a performance floor before running the full DANN model.
-`uncertainty_final_model.py` is the full model. It extends the baseline with the multi-domain DANN architecture: a ResNet50 backbone split into three stages (layer2 + layer3 + layer4) whose outputs are pooled separately and concatenated to a 3584-d feature vector, plus four adversarial domain classifiers (Tumor, Species, Origin, Scanner) from Phase 2. 
+`uncertainty_final_model.py` is the full model. It extends the baseline with the multi-domain DANN architecture: a ResNet50 backbone split into three stages (layer2 + layer3 + layer4) whose outputs are pooled separately and concatenated to a 3584-d feature vector, plus four adversarial domain classifiers (Tumor, Species, Origin, Scanner) from Phase 2.
+`document.md` - contains information on all the functions in every phase 1 script 
 
 Results folder:
 - `test_predictions_with_confidence.json` - example output: `{patch_name, true_label, predicted_label, max_probability, predictive_entropy, mutual_information, is_reliable}`.
