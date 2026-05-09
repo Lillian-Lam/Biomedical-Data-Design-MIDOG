@@ -8,23 +8,12 @@ Extract patch-level features from MIDOG++ WSIs using OpenAI CLIP (ViT-B/32) as a
 pip install torch torchvision pillow tqdm pandas matplotlib
 pip install git+https://github.com/openai/CLIP.git
 ```
-## Configuration: Setting Your Image Path
-Before running any extraction script, you must update the path to where your MIDOG++ images are stored on your local machine.
-
-1. Open the script you wish to run.
-2. Locate the Configuration section at the top.
-3. Update the image_folder variable:
-
-```Python
-# CHANGE THIS: Point to your local folder containing .tiff files
-image_folder = '/path/to/your/local/MIDOGpp/images'
-```
 
 ## Usage
-Edit `image_folder` and `output_path` at the top of `clipnet.py`, then:
+extract features and plot umap
 ```bash
-python clipnet.py
-python clip.py
+python clipnet.py /path/to/your/images
+python umap_clip.py
 ```
 
 ## Key file
