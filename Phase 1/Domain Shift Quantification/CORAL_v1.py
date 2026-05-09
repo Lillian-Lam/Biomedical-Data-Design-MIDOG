@@ -9,7 +9,7 @@ import sys
 
 # ================= CONFIGURATION =================
 if len(sys.argv) < 2:
-    print("Usage: python MMD_v1.py <path_to_pkl_file>")
+    print("Usage: python CORAL_v1.py <path_to_pkl_file>")
     sys.exit(1)
     
 PKL_PATH = sys.argv[1]
