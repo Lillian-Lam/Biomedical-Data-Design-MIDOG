@@ -47,15 +47,15 @@ python preprocessing/train_test_split.py
 
 # 2. Crop 224x224 patches centered on each annotation bbox
 #    Run separately for train, validation, and test splits
-python "Phase 2/preprocessing/224_patch_around_bbox.py" \
+python "preprocessing/224_patch_around_bbox.py" \
   --coco_json ./images/MIDOGpp.json \
   --image_dir ./images_split/train/ \
   --output_dir ./images_split/train/224_patches/
-python "Phase 2/preprocessing/224_patch_around_bbox.py"
+python "preprocessing/224_patch_around_bbox.py"
   --coco_json ./images/MIDOGpp.json \
   --image_dir ./images_split/val/ \
   --output_dir ./images_split/val/224_patches/
-python "Phase 2/preprocessing/224_patch_around_bbox.py" \
+python "preprocessing/224_patch_around_bbox.py" \
   --coco_json ./images/MIDOGpp.json \
   --image_dir ./images_split/test/ \
   --output_dir ./images_split/test/224_patches/
