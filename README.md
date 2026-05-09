@@ -47,19 +47,8 @@ python "Phase 1/Domain Shift Quantification/MMD_v1.py"
 python "Phase 1/Similarity/similarity_wsi.py"
 
 # Phase 2: split, patch, train
-python "Phase 2/preprocessing/train_test_split.py"
-python "Phase 2/preprocessing/224_patch_around_bbox.py" \
-  --coco_json ./images/MIDOGpp.json \
-  --image_dir ./images_split/train/ \
-  --output_dir ./images_split/train/224_patches/
-python "Phase 2/preprocessing/224_patch_around_bbox.py"
-  --coco_json ./images/MIDOGpp.json \
-  --image_dir ./images_split/val/ \
-  --output_dir ./images_split/val/224_patches/
-python "Phase 2/preprocessing/224_patch_around_bbox.py" \
-  --coco_json ./images/MIDOGpp.json \
-  --image_dir ./images_split/test/ \
-  --output_dir ./images_split/test/224_patches/
+python "Phase 2/preprocessing/train_test_split.py" ./images
+python "Phase 2/preprocessing/224_patch_around_bbox.py" ./images/MIDOGpp.json
 python "Phase 2/final_model.py"
 
 # Phase 3: train with MC Dropout, write per-patch confidence
