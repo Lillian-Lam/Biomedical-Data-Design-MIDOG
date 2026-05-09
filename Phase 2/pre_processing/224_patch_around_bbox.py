@@ -96,8 +96,22 @@ def extract_patches_224(coco_json, image_dir, output_dir, patch_size=224):
     return patch_info
 
 if __name__ == "__main__":
-    coco_json = "./images/MIDOGpp.json"
-    image_dir = "./images_split/train/"
-    output_dir = "./images_split/train/224_patches"
+    if len(sys.argv) < 2:
+        print("Usage: python extraction_script.py <path_to_coco_json>")
+        sys.exit(1)
+        
+    input_json = sys.argv[1]
+    splits = ["test", "train", "val"]
+
+    for s in splits:
+        print(f"\nProcessing {s} split...")
+        img_dir = f"./images_split/{s}/"
+        out_dir = f"./images_split/{s}/224_patches"
+        
+        # Check if directory exists before running
+        if os.path.exists(img_dir):
+            extract_patches_224(input_json, img_dir, out_dir)
+        else:
+            print(f"Directory {img_dir} not found, skipping...")
     
     extract_patches_224(coco_json, image_dir, output_dir, patch_size=224)
