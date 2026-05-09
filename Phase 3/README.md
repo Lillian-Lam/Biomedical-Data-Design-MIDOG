@@ -21,6 +21,8 @@ Key knobs at the top of the file:
 
 ## Key files
 - `base_uncertainty.py` - training + MC-Dropout inference. Trains the classifier, then runs N stochastic passes on the test set and writes per-patch confidence scores.
+
+Results folder:
 - `test_predictions_with_confidence.json` - example output: `{patch_name, true_label, predicted_label, max_probability, predictive_entropy, mutual_information, is_reliable}`.
 - `result.txt` - example training log.
 
