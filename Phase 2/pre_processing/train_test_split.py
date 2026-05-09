@@ -8,7 +8,7 @@ np.random.seed(123)
 
 #get the metadata 
 #CHANGE THE DIRECTORY FOR datasets_xvalidation.csv
-df = pd.read_csv('./datasets_xvalidation.csv', sep=';').apply(lambda x: x.astype(str).str.strip())
+df = pd.read_csv('../datasets_xvalidation.csv', sep=';').apply(lambda x: x.astype(str).str.strip())
 df['Scanner'] = df['Scanner'].replace('Hamammatsu XR', 'Hamamatsu XR')
 
 #get unique slides and create all possible domains
