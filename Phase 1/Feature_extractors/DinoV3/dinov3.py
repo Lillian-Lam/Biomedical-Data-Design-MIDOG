@@ -21,7 +21,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 # Reference: https://huggingface.co/timm/vit_base_patch16_dinov3.lvd1689m
 model_name = 'vit_base_patch16_dinov3.lvd1689m' 
 if len(sys.argv) < 2:
-    print("Usage: python dinov3_feature_extractor.py <path_to_images_directory>")
+    print("Usage: python dinov3.py <path_to_images_directory>")
     sys.exit(1)
 
 image_folder = sys.argv[1]
