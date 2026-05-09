@@ -6,6 +6,12 @@ from pathlib import Path
 
 np.random.seed(123)
 
+if len(sys.argv) < 2:
+    print("Usage: python your_script_name.py <path_to_images_directory>")
+    sys.exit(1)
+
+IMAGE_SOURCE_DIR = sys.argv[1]
+
 #get the metadata 
 #CHANGE THE DIRECTORY FOR datasets_xvalidation.csv
 df = pd.read_csv('../datasets_xvalidation.csv', sep=';').apply(lambda x: x.astype(str).str.strip())
@@ -89,10 +95,7 @@ def copy_images_to_folders(image_source_dir, train_slides, val_slides, test_slid
                         test_count += 1
                     #else: slide_id not in our train/val/test sets
     
-    return train_count, val_count, test_count
-    
-#CHANGE THIS TO IMAGES PATH
-IMAGE_SOURCE_DIR = './images'  
+    return train_count, val_count, test_count 
 
 if os.path.exists(IMAGE_SOURCE_DIR):
     train_img_count, val_img_count, test_img_count = copy_images_to_folders(IMAGE_SOURCE_DIR, train, val, test)
