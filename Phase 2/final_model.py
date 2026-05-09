@@ -319,16 +319,6 @@ class DANNModel(nn.Module):
                                 nn.Linear(256, num_domain_classes[attr]))
             for attr in domain_attr})
 
-    def _extract_multiscale(self, x):
-        #forward through backbone stages and pool each scale independently
-        #returns a single 3584-d vector per image: [coarse | intermediate | fine]
-        x=self.stem(x)
-        f2=self.pool2(self.layer2(x)).flatten(1)#[B, 512]
-        f3=self.pool3(self.layer3(self.layer2(x))).flatten(1)# [B, 1024]
-        f4=self.pool4(self.layer4(self.layer3(self.layer2(x)))).flatten(1)# [B, 2048]
-        #concatenate coarse -> intermediate -> fine so the classifier sees all scales
-        return torch.cat([f2, f3, f4], dim=1)#[B, 3584]
-
     def forward(self, x):
         #compute backbone stages once and reuse to avoid redundant computation
         x=self.stem(x)
