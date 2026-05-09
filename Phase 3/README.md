@@ -7,10 +7,10 @@ Extend the Phase 2 mitosis classifier with predictive-uncertainty estimation. Th
 ```bash
 pip install torch torchvision pandas numpy pillow tqdm scikit-learn matplotlib umap-learn seaborn
 ```
-Inputs: the `images_split/{train,val,test}/224_patches` folders and `patch_metadata.json` files produced in Phase 2.
 
 ## Usage
-Edit the path constants at the top of the script, then:
+Inputs: the `images_split/{train,val,test}/224_patches` folders and `patch_metadata.json` files produced in Phase 2.
+All files should be in the root directory before running the script:
 ```bash
 #baseline (no domain adaptation)
 python base_uncertainty.py
