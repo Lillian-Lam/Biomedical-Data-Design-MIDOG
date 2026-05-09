@@ -27,16 +27,6 @@ A complete pipeline for:
 - Saves per‑category scatter plots and results as a CSV
 
 ## Setup & Configuration
-Before running ctranspath_cycleGAN_norm.py, ensure your local environment matches the expected structure:
-
-Image Data: Place your MIDOG++ .tiff files in ./images/.
-
-Metadata: Ensure datasets_xvalidation.csv is located in the ./TransPath/ directory for UMAP generation.
-
-Note: If your data is stored elsewhere (e.g., an external drive), edit the image_folder and model_path variables at the top of the script.
-
-
-## Setup & Configuration
 Before running any extraction script, you must update the path to where your MIDOG++ images are stored on your local machine and download the model weights.  
 
 1. Open the script you wish to run.
