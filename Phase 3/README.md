@@ -1,5 +1,7 @@
 # Phase 3 - Uncertainty-Aware Mitosis Classification
 
+![uncertainty distribution](https://github.com/Lillian-Lam/Biomedical-Data-Design-MIDOG/blob/main/Phase%203/results/uncertainty_distribution.png)
+
 ## Background
 Extend the Phase 2 mitosis classifier with predictive-uncertainty estimation. The model uses a ResNet50 backbone with multi-scale feature extraction (layer2 + layer3 + layer4 concatenated to a 3584-d vector) and four adversarial domain classifiers (Tumor, Species, Origin, Scanner) that force the backbone to learn domain-invariant features via a Gradient Reversal Layer. We add MC Dropout to a ResNet50 backbone and run multiple stochastic forward passes per patch, so each prediction comes with a confidence score. Low-confidence predictions can be flagged for review instead of trusted blindly.
 
