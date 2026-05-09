@@ -14,6 +14,7 @@ from PIL import Image
 import tkinter as tk
 from tkinter import filedialog, simpledialog
 import gc
+import sys 
 
 # Handle missing cellpose
 try:
@@ -26,11 +27,6 @@ try:
     from skimage.measure import regionprops, label
 except ImportError:
     raise ImportError("scikit-image is not installed. Please run: pip install scikit-image")
-
-# Directory (adjust as needed)
-# Processing full whole slide images (7.2K x 5.4K)
-WSI_DIR = "./images"  # Full WSI images
-OUTPUT_DIR = "./Phase 2/preprocessing/cellpose_annotations" # Output directory
 
 # Helper to get all WSI files
 def get_wsi_files(wsi_dir):
@@ -107,8 +103,12 @@ def save_coco(image_name, bboxes, img_width, img_height, image_id=1):
 # Main Function Defined
 
 def main():
-    wsi_dir = WSI_DIR
-    output_dir = OUTPUT_DIR
+    if len(sys.argv) < 2:
+        print("Usage: python cell_segmentation_to_coco.py <path_to_images_directory>")
+        sys.exit(1)
+    
+    wsi_dir = sys.argv[1]  # Full WSI images
+    output_dir = "./annotations/cellpose_annotations"  # Output directory
     os.makedirs(output_dir, exist_ok=True)
     
     wsi_files = get_wsi_files(wsi_dir)
