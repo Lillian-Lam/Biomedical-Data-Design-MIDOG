@@ -29,60 +29,67 @@ A complete pipeline for:
 ## Setup & Configuration
 Before running any extraction script, you must update the path to where your MIDOG++ images are stored on your local machine and download the model weights.  
 
-1. Open the script you wish to run.
-2. Update the image_folder variable:
-
-```Python
-# CHANGE THIS: Point to your local folder containing .tiff files
-image_folder = '/path/to/your/local/MIDOGpp/images'
-```
-3. This pipeline uses modules from the CTransPath repository and multistain_cyclegan_normalization repository. Clone them into your working directory:
+1. This pipeline uses modules from the CTransPath repository and multistain_cyclegan_normalization repository. Clone them into your working directory:
 ```bash
 git clone https://github.com/Xiyue-Wang/TransPath.git
 git clone https://github.com/DBO-DKFZ/multistain_cyclegan_normalization.git
 ```
 
-3. Model Weights:
+2. Model Weights:
 You must manually download the pretrained weights and place them in the following directories:
 - Download ctranspath.pth into ./TransPath/.
 - Download latest_net_G_A.pth into ./multistain_cyclegan/resources/weights/.
 
-4. Metadata: Ensure datasets_xvalidation.csv is located in the ./TransPath/ directory for UMAP generation.
-
-5. Update Absolute Paths
-
-```Python
-# Use the full absolute path to your data/models
-image_folder = '/home/username/data/MIDOGpp/images' 
-model_path = '/home/username/project/TransPath/ctranspath.pth'
-pretrained_cyclegan_path = '/home/username/project/multistain_cyclegan/resources/weights/latest_net_G_A.pth'
-```
-
+3. Metadata: Ensure datasets_xvalidation.csv is located in the ./TransPath/ directory for UMAP generation.
 
 ## **Usage**
 ### **Run full pipeline (default)**
 ```bash
-python ctranspath_cycleGAN_norm.py
+python ctranspath_cycleGAN_norm.py \
+  --image_folder /path/to/your/images \
+  --output_dir /path/to/results \
+  --model_path /path/to/ctranspath.pth \
+  --cyclegan_path /path/to/latest_net_G_A.pth
 ```
 Runs normalization, feature extraction, and UMAP visualization in sequence.
 
 ### **Normalize WSIs only**
 ```bash
-python ctranspath_cycleGAN_norm.py --normalize_images
+python ctranspath_cycleGAN_norm.py \
+  --normalize_images \
+  --image_folder /path/to/your/images \
+  --output_dir /path/to/results \
+  --model_path /path/to/ctranspath.pth \
+  --cyclegan_path /path/to/latest_net_G_A.pth
 ```
-Loads the pretrained CycleGAN model, normalizes all WSIs in `image_folder`, and saves normalized WSIs to `normalized_image_folder`.
+Loads the pretrained CycleGAN model, normalizes all WSIs in image_folder, and saves normalized WSIs to `{output_dir}/images_normalized/`.
 
 ### **Extract features only**
 ```bash
-python ctranspath_cycleGAN_norm.py --extract_features
+python ctranspath_cycleGAN_norm.py \
+  --extract_features \
+  --output_dir /path/to/results
 ```
-If normalization was run previously, uses the normalized WSIs. Also runs UMAP visualization automatically.
+If normalization was run previously, uses the normalized WSIs from `{output_dir}/images_normalized/`. Also runs UMAP visualization automatically
 
 ### **Skip normalization (use raw WSIs)**
 ```bash
-python ctranspath_cycleGAN_norm.py --skip_normalization
+python ctranspath_cycleGAN_norm.py \
+  --skip_normalization \
+  --extract_features \
+  --image_folder /path/to/your/images \
+  --output_dir /path/to/results
 ```
 Skips the CycleGAN normalization step and runs feature extraction + UMAP on the original WSIs.
+
+### **Custom patch parameters**
+```bash
+python ctranspath_cycleGAN_norm.py \
+  --patch_size 224 \
+  --stride 224 \
+  --max_patches 500 \
+  --batch_size 64
+```
 
 ## **Output**
 ### **Normalized WSIs**
