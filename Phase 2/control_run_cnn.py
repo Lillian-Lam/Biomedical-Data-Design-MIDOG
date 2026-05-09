@@ -14,10 +14,13 @@ import matplotlib.pyplot as plt
 
 #very basic ResNet50 backbone classifer
 #CHANGE THE FILE PATH!!!!!!!!!!!
-train_path = './train_224_patch/'
-test_path = './test_224_patch/'
-train_metadata = os.path.join(train_path, 'patch_metadata.json')
-test_metadata = os.path.join(test_path, 'patch_metadata.json')
+train_path= "./images_split/train/224_patches/"
+test_path= "./images_split/test/224_patches/"
+train_metadata= os.path.join(train_path, 'patch_metadata.json')
+test_metadata= os.path.join(test_path, 'patch_metadata.json')
+# The CSV files were saved directly in the root of the repo
+train_csv= "./train.csv"
+test_csv= "./test.csv"
 num_epochs = 20
 batch_size = 32
 learning_rate = 0.001
