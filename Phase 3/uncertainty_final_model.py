@@ -735,7 +735,7 @@ def plot_training_history(history, chance_levels, results_dir='results'):
 
     #panel 1: mitosis loss only
     axes[0].plot(epochs, history['train_mitosis_loss'], 'b-', label='Train Mitosis Loss', linewidth=2)
-    axes[0].plot(epochs, history['test_mitosis_loss'], 'r-', label='Val Mitosis Loss', linewidth=2)
+    axes[0].plot(epochs, history['val_mitosis_loss'], 'r-', label='Val Mitosis Loss', linewidth=2)
     axes[0].set_xlabel('Epochs')
     axes[0].set_ylabel('Loss')
     axes[0].set_title('Mitosis Loss')
@@ -753,7 +753,7 @@ def plot_training_history(history, chance_levels, results_dir='results'):
 
     #panel 3: mitosis accuracy
     axes[2].plot(epochs, history['train_acc'], 'b-', label='Training Accuracy', linewidth=2)
-    axes[2].plot(epochs, history['val_acc'], 'r-', label='Validation Accuracy', linewidth=2)
+    axes[1].plot(epochs, history['val_domain_loss'], 'r-', label='Val Domain Loss', linewidth=2)
     axes[2].set_xlabel('Epochs')
     axes[2].set_ylabel('Accuracy (%)')
     axes[2].set_title('Mitosis Accuracy')
