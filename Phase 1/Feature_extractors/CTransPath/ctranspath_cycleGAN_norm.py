@@ -26,19 +26,19 @@ from util.util import tensor2im
 
 #configuration from local directory
 #CHANGE WHEN YOU RUN YOUR CODE
-model_path = './TransPath/ctranspath.pth'
+#model_path = './TransPath/ctranspath.pth'
 #pretrained CAMELYON17 CycleGAN model
 #downloaded model from from: https://github.com/DBO-DKFZ/multistain_cyclegan_normalization.git (you should clone this repo)
 #downloaded the weights from: https://hub.dkfz.de/s/otKYg4onkCNapWT
 #placed weights in: ./multistain_cyclegan/resources/weights/latest_net_G_A.pth
-pretrained_cyclegan_path = './multistain_cyclegan/resources/weights/latest_net_G_A.pth'
+#pretrained_cyclegan_path = './multistain_cyclegan/resources/weights/latest_net_G_A.pth'
 
-image_folder = './images/'
-normalized_image_folder = './images_normalized/'
-output_path = './results_norm/midog_features_patches_normalized.pkl'
+#image_folder = './images/'
+#normalized_image_folder = './images_normalized/'
+#output_path = './results_norm/midog_features_patches_normalized.pkl'
 
-os.makedirs(os.path.dirname(output_path), exist_ok=True)
-os.makedirs(normalized_image_folder, exist_ok=True)
+#os.makedirs(os.path.dirname(output_path), exist_ok=True)
+#os.makedirs(normalized_image_folder, exist_ok=True)
 
 #patch parameters (we want to extract features in patches rather than resize the image)
 patch_size = 224
@@ -315,7 +315,7 @@ def extract_features_from_patches(model, image_folder, output_path, batch_size=3
             features_dict[image_path.name] = image_features
 
         except Exception as e:
-                print(f"Error loading {path}: {e}")
+                print(f"Error processing {image_path}: {e}")
                 continue
 
     #Yang's code
@@ -350,9 +350,9 @@ def extract_features_from_patches(model, image_folder, output_path, batch_size=3
     return features_dict
 
 #edited from Yang's code
-def umap_visualizations():
+def umap_visualizations(features_path):
     # Load features
-    with open('./results_norm/midog_features_patches_normalized.pkl', 'rb') as f:
+    with open(features_path, 'rb') as f:
         features_dict = pickle.load(f)
 
     #load metadata from csv file
@@ -389,7 +389,7 @@ def umap_visualizations():
     features_scaled = scaler.fit_transform(feature_array)
 
     #I just followed the same parameter as Yang
-    umap_model = UMAP(
+    umap_model = umap.UMAP(
         n_neighbors=15,
         n_components=2, #we reduce to 2 dimensions
         min_dist=0.1, #how close clusters are
@@ -444,6 +444,18 @@ def umap_visualizations():
 if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser()
+
+    # Input/Output paths
+    parser.add_argument('--image_folder', type=str, default='./images/',
+                       help='Path to input images folder')
+    parser.add_argument('--output_dir', type=str, default='./results_norm',
+                       help='Directory to save outputs')
+    parser.add_argument('--model_path', type=str, default='./TransPath/ctranspath.pth',
+                       help='Path to CTransPath model weights')
+    parser.add_argument('--cyclegan_path', type=str, 
+                       default='./multistain_cyclegan/resources/weights/latest_net_G_A.pth',
+                       help='Path to CycleGAN weights')
+    
     #run WSI normalization
     parser.add_argument('--normalize_images', action='store_true', 
                        help='Run stain normalization on images (run this first)')
@@ -453,7 +465,33 @@ if __name__ == '__main__':
     #if you want to bypass normalization and just use the raw images
     parser.add_argument('--skip_normalization', action='store_true',
                        help='Skip normalization, use original images')
+
+    # Patch parameters
+    parser.add_argument('--patch_size', type=int, default=224,
+                       help='Patch size for extraction')
+    parser.add_argument('--stride', type=int, default=224,
+                       help='Stride for patch extraction')
+    parser.add_argument('--max_patches', type=int, default=1000,
+                       help='Maximum patches per image')
+    parser.add_argument('--batch_size', type=int, default=32,
+                       help='Batch size for feature extraction')
     args = parser.parse_args()
+
+    #update paths based on arguments
+    image_folder = args.image_folder
+    normalized_image_folder = f'{args.output_dir}/images_normalized/'
+    output_path = f'{args.output_dir}/midog_features_patches_normalized.pkl'
+    model_path = args.model_path 
+    pretrained_cyclegan_path = args.cyclegan_path  
+    
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    os.makedirs(normalized_image_folder, exist_ok=True)
+
+    # Update parameters
+    patch_size = args.patch_size
+    stride = args.stride
+    max_patches_per_image = args.max_patches
+    batch_size = args.batch_size
     
     #run everything as default
     if not args.normalize_images and not args.extract_features:
@@ -507,7 +545,7 @@ if __name__ == '__main__':
 
         print('STEP 3: Generating UMAP visualizations')
         
-        results_df = umap_visualizations()
+        results_df = umap_visualizations(output_path)
         
         csv_name = 'umap_results_normalized.csv' if not args.skip_normalization else 'umap_results_original.csv'
         results_df.to_csv(csv_name, index=False)
