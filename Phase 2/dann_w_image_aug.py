@@ -24,13 +24,13 @@ import umap
 
 
 #CHANGE THE FILE PATHS!!!!!!!!!!!
-train_path = "./train_224_patch/"
-test_path = "./test_224_patch/"
-train_metadata = os.path.join(train_path, 'patch_metadata.json')
-test_metadata = os.path.join(test_path, 'patch_metadata.json')
-#csv files with columns: Slide;Tumor;Species;Origin;Scanner (semicolon separated)
-train_csv = "./train.csv"
-test_csv = "./test.csv"
+train_path= "./images_split/train/224_patches/"
+test_path= "./images_split/test/224_patches/"
+train_metadata= os.path.join(train_path, 'patch_metadata.json')
+test_metadata= os.path.join(test_path, 'patch_metadata.json')
+# The CSV files were saved directly in the root of the repo
+train_csv= "./train.csv"
+test_csv= "./test.csv"
 
 #hyperparameters
 num_epochs= 20
