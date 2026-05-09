@@ -7,10 +7,9 @@ Quantify domain shift in MIDOG++ patch features across scanners, tumor types, an
 ```bash
 pip install numpy pandas scipy scikit-learn matplotlib seaborn
 ```
-Inputs: `midog.csv` and a feature pickle from Phase 1 (e.g. `midog_feature_patches.pkl`). Place both alongside the script.
 
 ## Usage
-Run from inside this folder so relative paths resolve. 
+Run from inside the `Domain Shift Quantification` folder so relative paths resolve:  
 ```bash
 python MMD_v1.py ../Feature_extractors/CTransPath/midog_features.pkl
 python CORAL_v1.py ../Feature_extractors/CTransPath/midog_features.pkl
