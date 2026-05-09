@@ -32,8 +32,9 @@ pip install histomicstk
 Run scripts in this order. Edit the path constants at the top of each script.
 
 ```bash
-# 0. (Optional) Generate COCO annotations from unannotated WSIs
-python preprocessing/cell_segmentation_to_coco.py
+# 0. Generate COCO annotations from unannotated WSIs
+#    Usage: python preprocessing/cell_segmentation_to_coco.py <path_to_images_directory>
+python preprocessing/cell_segmentation_to_coco.py ./images
 
 # 1. Stratified train/test split by (Tumor, Scanner, Origin, Species) domain
 #    This script creates train.csv, val.csv, test.csv and copies images to images_split/
