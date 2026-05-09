@@ -29,8 +29,7 @@ A complete pipeline for:
 ## Setup & Configuration
 Before running ctranspath_cycleGAN_norm.py, ensure your local environment matches the expected structure:
 
-`. Image Data: Place your MIDOG++ .tiff files in ./images/.
-
+Image Data: Place your MIDOG++ .tiff files in ./images/.
 
 Metadata: Ensure datasets_xvalidation.csv is located in the ./TransPath/ directory for UMAP generation.
 
