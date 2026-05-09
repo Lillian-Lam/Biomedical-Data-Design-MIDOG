@@ -6,9 +6,14 @@ import matplotlib.pyplot as plt
 import os
 import gc  
 from pathlib import Path
+import sys
 
 # ================= CONFIGURATION =================
-PKL_PATH = '../Feature_extractors/results_norm/midog_features_patches_normalized.pkl' 
+if len(sys.argv) < 2:
+    print("Usage: python MMD_v1.py <path_to_pkl_file>")
+    sys.exit(1)
+    
+PKL_PATH = sys.argv[1]
 CSV_PATH = 'midog.csv'
 OUTPUT_DIR = 'mmd_unified_results'
 # ========================================================
