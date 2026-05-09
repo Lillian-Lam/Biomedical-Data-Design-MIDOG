@@ -29,7 +29,7 @@ Edit the `WEIGHTS`, `SIGMA`, and file paths at the top of each script.
 Similarity Fusion (`similarity.py`)
 1. Load (or compute) per-metric pairwise distance matrices.
 2. Min-max normalize each matrix to [0, 1].
-3. Convert distance to similarity with a Gaussian kernel `exp(-d^2 / 2σ^2)`.
+3. Convert distance to similarity with a Gaussian kernel $exp(\frac{-d^2}{2\sigma^2})$.
 4. Weighted fuse: `MMD * 0.5 + Wasserstein * 0.3 + CORAL * 0.2` (default in `similarity_wsi.py`).
 
 Raw Shift Scoring (`domain_shift_score.py`)
