@@ -47,9 +47,18 @@ python preprocessing/train_test_split.py
 
 # 2. Crop 224x224 patches centered on each annotation bbox
 #    Run separately for train, validation, and test splits
-python preprocessing/224_patch_around_bbox.py --coco_json ./images_split/train/annotations.json --image_dir ./images_split/train/ --output_dir ./images_split/train/224_patches
-python preprocessing/224_patch_around_bbox.py --coco_json ./images_split/val/annotations.json --image_dir ./images_split/val/ --output_dir ./images_split/val/224_patches
-python preprocessing/224_patch_around_bbox.py --coco_json ./images_split/test/annotations.json --image_dir ./images_split/test/ --output_dir ./images_split/test/224_patches
+python "Phase 2/preprocessing/224_patch_around_bbox.py" \
+  --coco_json ./databases/MIDOG++.json \
+  --image_dir ./images_split/train/ \
+  --output_dir ./images_split/train/224_patches/
+python "Phase 2/preprocessing/224_patch_around_bbox.py"
+  --coco_json ./databases/MIDOG++.json \
+  --image_dir ./images_split/val/ \
+  --output_dir ./images_split/val/224_patches/
+python "Phase 2/preprocessing/224_patch_around_bbox.py" \
+  --coco_json ./databases/MIDOG++.json \
+  --image_dir ./images_split/test/ \
+  --output_dir ./images_split/test/224_patches/
 
 # 3a. Baselines (RGB / hematoxylin)
 python control_run_cnn.py
