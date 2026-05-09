@@ -16,7 +16,11 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # Configuration
 model_name = 'efficientnet_b0' # Can be b0, b1, b2, b3, b4
-image_folder = '/home/caoyang/BDD/MIDOGpp-main/images'
+if len(sys.argv) < 2:
+    print("Usage: python efficientnet.py <path_to_images_directory>")
+    sys.exit(1)
+
+image_folder = sys.argv[1]
 output_path = './midog_efficientnet_features_patches.pkl'
 
 # Patch parameters
