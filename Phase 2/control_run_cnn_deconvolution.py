@@ -24,12 +24,16 @@ from tqdm import tqdm
 import matplotlib.pyplot as plt
 
 # File paths - MAKE SURE THESE MATCH YOUR DIRECTORY STRUCTURE
-train_path = './images_split/train/224_patches'
-val_path = './images_split/val/224_patches'
-test_path = './images_split/test/224_patches/'
-train_metadata = os.path.join(train_path, 'patch_metadata.json')
-val_metadata = os.path.join(val_path, 'patch_metadata.json')
-test_metadata = os.path.join(test_path, 'patch_metadata.json')
+train_path= "./images_split/train/224_patches/"
+val_path= "./images_split/val/224_patches/"
+test_path= "./images_split/test/224_patches/"
+train_metadata= os.path.join(train_path, 'patch_metadata.json')
+val_metadata= os.path.join(val_path, 'patch_metadata.json')
+test_metadata= os.path.join(test_path, 'patch_metadata.json')
+# The CSV files were saved directly in the root of the repo
+train_csv= "./train.csv"
+val_csv= "./val.csv"
+test_csv= "./test.csv"
 
 # Training hyperparameters
 num_epochs = 20
