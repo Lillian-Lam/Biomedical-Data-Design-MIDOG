@@ -12,10 +12,10 @@ Inputs: `midog.csv` and a feature pickle from Phase 1 (e.g. `midog_feature_patch
 ## Usage
 Run from inside this folder so relative paths resolve. 
 ```bash
-python MMD_v1.py                    
-python CORAL_v1.py
-python "Wasserstein Distance_v1.py"
-python "Proxy A-Distance.py"
+python MMD_v1.py ../Feature_extractors/CTransPath/midog_features.pkl
+python CORAL_v1.py ../Feature_extractors/CTransPath/midog_features.pkl
+python "Wasserstein Distance_v1.py" ../Feature_extractors/CTransPath/midog_features.pkl
+python "Proxy A-Distance.py" ../Feature_extractors/CTransPath/midog_features.pkl
 ```
 Each script first does a global pass (by `domain` / `Scanner` / `Tumor` / `Origin`), then a controlled pass that fixes one factor and varies another.
 
@@ -31,10 +31,10 @@ Each script first does a global pass (by `domain` / `Scanner` / `Tumor` / `Origi
 If you wish to use a different feature extraction model (CLIP, dinoV3, etc), follow these steps:
 
 1. Generate your feature embeddings from one of the `Phase 1/Feature_extractors`. It should save them in a .pkl dictionary format: { 'filename.tiff': {'features': np.array, ...} }.
-2. In the quantification scripts (MMD_v1.py, CORAL_v1.py, etc.), update the PKL_PATH variable:
-```Python
-# Change this to point to your new feature file
-PKL_PATH = 'path/to/your/custom_features.pkl'
+2. In the quantification scripts (MMD_v1.py, CORAL_v1.py, etc.), pass your custom feature pickle as the argument:
+```bash
+python MMD_v1.py ./clip_features.pkl
+python MMD_v1.py ./dinov3_features.pkl
 ```
 3. Make sure your new features match the expected dimensions (e.g., 768 for CTransPath) or update the visualization scripts accordingly.
 
