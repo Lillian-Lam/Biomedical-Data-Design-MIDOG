@@ -42,13 +42,19 @@ Python 3.9+, GPU recommended. Each phase has its own README with detailed steps.
 Run the phases in order. Each script has path / hyperparameter constants at the top - edit those before running.
 ```bash
 # Phase 1: pick an encoder, extract features, then quantify and fuse
-python "Phase 1/Feature_extractors/CTransPath/ctranspath_cycleGAN_norm.py" --skip_normalization
-python "Phase 1/Domain Shift Quantification/MMD_v1.py"
+python "Phase 1/Feature_extractors/CTransPath/ctranspath_cycleGAN_norm.py" \
+  --skip_normalization \
+  --extract_features \
+  --image_folder /path/to/your/images \
+  --output_dir /path/to/results
+python "Phase 1/Domain Shift Quantification/MMD_v1.py" ../Feature_extractors/CTransPath/midog_features.pkl
+python "Phase 1/Domain Shift Quantification/CORAL_v1.py" ../Feature_extractors/CTransPath/midog_features.pkl
+python "Phase 1/Domain Shift Quantification/Wasserstein Distance_v1.py" ../Feature_extractors/CTransPath/midog_features.pkl
 python "Phase 1/Similarity/similarity_wsi.py"
 
 # Phase 2: split, patch, train
-python "Phase 2/preprocessing/train_test_split.py" ./images
-python "Phase 2/preprocessing/224_patch_around_bbox.py" ./images/MIDOGpp.json
+python "Phase 2/preprocessing/train_test_split.py" /path/to/your/images
+python "Phase 2/preprocessing/224_patch_around_bbox.py" /path/to/your/images/MIDOGpp.json
 python "Phase 2/final_model.py"
 
 # Phase 3: train with MC Dropout, write per-patch confidence
