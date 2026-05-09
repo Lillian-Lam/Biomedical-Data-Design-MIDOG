@@ -20,7 +20,11 @@ os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
 # Configuration
 # Using MAE ViT-Base model (standard architecture for MAE)
 model_name = 'mae_vit_base_patch16'
-image_folder = '/home/caoyang/BDD/MIDOGpp-main/images'
+if len(sys.argv) < 2:
+    print("Usage: python mae_feature_extractor.py <path_to_images_directory>")
+    sys.exit(1)
+
+image_folder = sys.argv[1]
 output_path = './midog_mae_features_patches.pkl' # Output file for MAE features
 
 # Patch parameters
