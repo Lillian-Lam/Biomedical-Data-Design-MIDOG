@@ -9,8 +9,7 @@ This project uses the MIDOG++ dataset. To run the pipeline:
 
 Download the images and metadata from the official [MIDOG++](https://github.com/DeepMicroscopy/MIDOGpp) GitHub repository. 
 ```bash
-git clone https://github.com/Xiyue-Wang/TransPath.git](https://github.com/DeepMicroscopy/MIDOGpp
-```
+git clone https://github.com/DeepMicroscopy/MIDOGpp
 
 ## Pipeline
 
