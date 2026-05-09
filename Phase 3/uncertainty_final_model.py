@@ -1125,11 +1125,11 @@ def main():
     plot_f1_heatmap(all_preds, all_labels, all_domain_label_list, test_dataset,
                     os.path.join(results_dir, 'f1_heatmap_tumor.png'))
 
-    #========== MC Dropout Uncertainty Evaluation ==========
+    #MC Dropout Uncertainty Evaluation
     #re-run inference with dropout active to get per-patch entropy estimates
     #this is on top of the deterministic run above - same checkpoint, same test set
     #n_forward=MC_NUM_FORWARD_PASSES stochastic passes through the mitosis head only
-    print(f'\n\n========== MC Dropout Uncertainty Evaluation ({MC_NUM_FORWARD_PASSES} forward passes) ==========')
+    print(f'\n\nMC Dropout Uncertainty Evaluation ({MC_NUM_FORWARD_PASSES} forward passes)')
     mc_preds, mc_labels, all_entropy, all_mutual_info, all_max_prob, mc_domain_labels = \
         evaluate_with_uncertainty(model, test_loader, device,
                                   n_forward=MC_NUM_FORWARD_PASSES,
