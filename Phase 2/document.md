@@ -1,1167 +1,632 @@
-\# Phase 2 - Function Documentation
+# Phase 2 - Function Documentation
 
-
-
-\## Overview
+## Overview
 
 This document provides detailed function-level documentation for all Phase 2 scripts, including input/output expectations, argument types, and return values.
 
+## 1. cell_segmentation_to_coco.py
 
+### `get_wsi_files(wsi_dir)`
 
-\## 1. cell\_segmentation\_to\_coco.py
+**Purpose**: Get all TIFF WSI files from a directory.
 
+**Args**:
+- `wsi_dir` (str): Path to directory containing WSI files
 
+**Returns**:
+- `list` of str: Full paths to all `.tif` and `.tiff` files in the directory
 
-\### `get\_wsi\_files(wsi\_dir)`
+### `get_cellpose_model()`
 
-&#x20; \*\*Purpose\*\*: Get all TIFF WSI files from a directory.
+**Purpose**: Get or initialize the global Cellpose model instance (singleton pattern).
 
-&#x20; 
+**Args**: None
 
-&#x20; \*\*Args\*\*:
+**Returns**:
+- `cellpose.models.CellposeModel`: Initialized Cellpose cyto model
 
-&#x20; - `wsi\_dir` (str): Path to directory containing WSI files
+### `segment_cells(img_np)`
 
-&#x20; 
+**Purpose**: Run Cellpose segmentation on a numpy image array.
 
-&#x20; \*\*Returns\*\*:
+**Args**:
+- `img_np` (np.ndarray): RGB image array, shape (H, W, 3), dtype uint8
 
-&#x20; - `list` of str: Full paths to all `.tif` and `.tiff` files in the directory
+**Returns**:
+- `np.ndarray` or `None`: Segmentation masks (0=background, >0=cell labels) or None if failed
 
+### `masks_to_bboxes(masks)`
 
+**Purpose**: Convert segmentation masks to bounding boxes.
 
-\### `get\_cellpose\_model()`
+**Args**:
+- `masks` (np.ndarray): Segmentation mask array from Cellpose
 
-&#x20; \*\*Purpose\*\*: Get or initialize the global Cellpose model instance (singleton pattern).
+**Returns**:
+- `list` of `list`: Bounding boxes in `[x1, y1, x2, y2]` format, one per detected cell
 
-&#x20; 
+### `save_coco(image_name, bboxes, img_width, img_height, image_id=1)`
 
-&#x20; \*\*Args\*\*: None
+**Purpose**: Save annotations in MS COCO format.
 
-&#x20; 
+**Args**:
+- `image_name` (str): Filename of the source image
+- `bboxes` (list): List of bounding boxes `[x1, y1, x2, y2]`
+- `img_width` (int): Width of the source image in pixels
+- `img_height` (int): Height of the source image in pixels
+- `image_id` (int): Unique identifier for this image (default: 1)
 
-&#x20; \*\*Returns\*\*:
+**Returns**:
+- `dict`: COCO-formatted dictionary with keys: `images`, `annotations`, `categories`
 
-&#x20; - `cellpose.models.CellposeModel`: Initialized Cellpose cyto model
+### `main()`
 
+**Purpose**: Main execution function. Processes all WSIs in the input directory.
 
-
-
-
-\### `segment\_cells(img\_np)`
-
-\*\*Purpose\*\*: Run Cellpose segmentation on a numpy image array.
-
-
-
-\*\*Args\*\*:
-
-\- `img\_np` (np.ndarray): RGB image array, shape (H, W, 3), dtype uint8
-
-
-
-\*\*Returns\*\*:
-
-\- `np.ndarray` or `None`: Segmentation masks (0=background, >0=cell labels) or None if failed
-
-
-
-\### `masks\_to\_bboxes(masks)`
-
-\*\*Purpose\*\*: Convert segmentation masks to bounding boxes.
-
-
-
-\*\*Args\*\*:
-
-\- `masks` (np.ndarray): Segmentation mask array from Cellpose
-
-
-
-\*\*Returns\*\*:
-
-\- `list` of `list`: Bounding boxes in `\[x1, y1, x2, y2]` format, one per detected cell
-
-
-
-\### `save\_coco(image\_name, bboxes, img\_width, img\_height, image\_id=1)`
-
-\*\*Purpose\*\*: Save annotations in MS COCO format.
-
-
-
-\*\*Args\*\*:
-
-\- `image\_name` (str): Filename of the source image
-
-\- `bboxes` (list): List of bounding boxes `\[x1, y1, x2, y2]`
-
-\- `img\_width` (int): Width of the source image in pixels
-
-\- `img\_height` (int): Height of the source image in pixels
-
-\- `image\_id` (int): Unique identifier for this image (default: 1)
-
-
-
-\*\*Returns\*\*:
-
-\- `dict`: COCO-formatted dictionary with keys: `images`, `annotations`, `categories`
-
-
-
-\### `main()`
-
-\*\*Purpose\*\*: Main execution function. Processes all WSIs in the input directory.
-
-
-
-\*\*Command line usage\*\*:
-
+**Command line usage**:
 ```bash
-
-python cell\_segmentation\_to\_coco.py <path\_to\_images\_directory>
-
+python cell_segmentation_to_coco.py <path_to_images_directory>
 ```
 
+**Args**: None (reads from `sys.argv`)
 
+**Returns**: None (saves JSON files to `./annotations/cellpose_annotations/`)
 
-\*\*Args\*\*: None (reads from `sys.argv`)
+**Output files**: `{image_name}_wsi_coco.json` per processed WSI
 
+## 2. train_test_split.py
 
+### `copy_images_to_folders(image_source_dir, train_slides, val_slides, test_slides)`
 
-\*\*Returns\*\*: None (saves JSON files to `./annotations/cellpose\_annotations/`)
+**Purpose**: Copy WSI images from source directory to split folders.
 
+**Args**:
+- `image_source_dir` (str): Path to directory containing original WSI `.tiff` files
+- `train_slides` (list): List of slide IDs for training set
+- `val_slides` (list): List of slide IDs for validation set
+- `test_slides` (list): List of slide IDs for test set
 
+**Returns**:
+- `tuple` of `(int, int, int)`: (train_count, val_count, test_count) - number of images copied to each folder
 
-\*\*Output files\*\*: `{image\_name}\_wsi\_coco.json` per processed WSI
+### `main()` (implicit in script execution)
 
+**Purpose**: Stratified 80/10/10 split by domain (Tumor x Scanner x Origin x Species).
 
-
-
-
-\## 2. train\_test\_split.py
-
-
-
-\### `copy\_images\_to\_folders(image\_source\_dir, train\_slides, val\_slides, test\_slides)`
-
-\*\*Purpose\*\*: Copy WSI images from source directory to split folders.
-
-
-
-\*\*Args\*\*:
-
-\- `image\_source\_dir` (str): Path to directory containing original WSI `.tiff` files
-
-\- `train\_slides` (list): List of slide IDs for training set
-
-\- `val\_slides` (list): List of slide IDs for validation set
-
-\- `test\_slides` (list): List of slide IDs for test set
-
-
-
-\*\*Returns\*\*:
-
-\- `tuple` of `(int, int, int)`: (train\_count, val\_count, test\_count) - number of images copied to each folder
-
-
-
-\### `main()` (implicit in script execution)
-
-\*\*Purpose\*\*: Stratified 80/10/10 split by domain (Tumor x Scanner x Origin x Species).
-
-
-
-\*\*Command line usage\*\*:
-
+**Command line usage**:
 ```bash
-
-python train\_test\_split.py <path\_to\_images\_directory>
-
+python train_test_split.py <path_to_images_directory>
 ```
 
+**Input files expected**:
+- `../datasets_xvalidation.csv` (relative path) - metadata CSV with semicolon separator
+- Image files in `<path_to_images_directory>`
 
+**Output files**:
+- `train.csv`, `val.csv`, `test.csv` - CSV files with slide metadata
+- `images_split/train/`, `images_split/val/`, `images_split/test/` - Copied WSI images
 
-\*\*Input files expected\*\*:
+**Returns**: None
 
-\- `../datasets\_xvalidation.csv` (relative path) - metadata CSV with semicolon separator
+## 3. 224_patch_around_bbox.py
 
-\- Image files in `<path\_to\_images\_directory>`
+### `extract_patches_224(coco_json, image_dir, output_dir, patch_size=224)`
 
+**Purpose**: Extract 224x224 patches centered on each COCO bounding box.
 
+**Args**:
+- `coco_json` (str): Path to COCO JSON annotation file
+- `image_dir` (str): Directory containing source WSI images
+- `output_dir` (str): Directory to save extracted patches
+- `patch_size` (int): Size of output patches in pixels (default: 224)
 
-\*\*Output files\*\*:
+**Returns**:
+- `list` of `dict`: Patch metadata list containing:
+  - `patch_name` (str): Filename of extracted patch
+  - `image_id` (int): Original image ID from COCO
+  - `annotation_id` (int): Annotation ID from COCO
+  - `category_id` (int): Category ID (1 or 2)
+  - `category_name` (str): "mitotic" or "non-mitotic"
+  - `original_bbox` (list): Original `[x1, y1, x2, y2]` coordinates
+  - `patch_coords` (list): Patch crop `[left, top, right, bottom]` coordinates
 
-\- `train.csv`, `val.csv`, `test.csv` - CSV files with slide metadata
+**Output files**:
+- Individual patch images: `{image_name}_ann{index}.tif`
+- `patch_metadata.json` in output directory
 
-\- `images\_split/train/`, `images\_split/val/`, `images\_split/test/` - Copied WSI images
+### `main()` (implicit)
 
+**Purpose**: Process train, val, and test splits sequentially.
 
-
-\*\*Returns\*\*: None
-
-
-
-
-
-\## 3. 224\_patch\_around\_bbox.py
-
-
-
-\### `extract\_patches\_224(coco\_json, image\_dir, output\_dir, patch\_size=224)`
-
-\*\*Purpose\*\*: Extract 224x224 patches centered on each COCO bounding box.
-
-
-
-\*\*Args\*\*:
-
-\- `coco\_json` (str): Path to COCO JSON annotation file
-
-\- `image\_dir` (str): Directory containing source WSI images
-
-\- `output\_dir` (str): Directory to save extracted patches
-
-\- `patch\_size` (int): Size of output patches in pixels (default: 224)
-
-
-
-\*\*Returns\*\*:
-
-\- `list` of `dict`: Patch metadata list containing:
-
-&#x20; - `patch\_name` (str): Filename of extracted patch
-
-&#x20; - `image\_id` (int): Original image ID from COCO
-
-&#x20; - `annotation\_id` (int): Annotation ID from COCO
-
-&#x20; - `category\_id` (int): Category ID (1 or 2)
-
-&#x20; - `category\_name` (str): "mitotic" or "non-mitotic"
-
-&#x20; - `original\_bbox` (list): Original `\[x1, y1, x2, y2]` coordinates
-
-&#x20; - `patch\_coords` (list): Patch crop `\[left, top, right, bottom]` coordinates
-
-
-
-\*\*Output files\*\*:
-
-\- Individual patch images: `{image\_name}\_ann{index}.tif`
-
-\- `patch\_metadata.json` in output directory
-
-
-
-\### `main()` (implicit)
-
-\*\*Purpose\*\*: Process train, val, and test splits sequentially.
-
-
-
-\*\*Command line usage\*\*:
-
+**Command line usage**:
 ```bash
-
-python 224\_patch\_around\_bbox.py <path\_to\_coco\_json>
-
+python 224_patch_around_bbox.py <path_to_coco_json>
 ```
 
+**Expected directory structure**:
+- `./images_split/train/` - Training images
+- `./images_split/val/` - Validation images
+- `./images_split/test/` - Test images
 
+**Output directories**:
+- `./images_split/train/224_patches/`
+- `./images_split/val/224_patches/`
+- `./images_split/test/224_patches/`
 
-\*\*Expected directory structure\*\*:
+**Returns**: None
 
-\- `./images\_split/train/` - Training images
+## 4. control_run_cnn.py
 
-\- `./images\_split/val/` - Validation images
+### `MitosisDataset.__init__(metadata_path, patches_dir)`
 
-\- `./images\_split/test/` - Test images
+**Purpose**: Initialize dataset for baseline CNN.
 
+**Args**:
+- `metadata_path` (str): Path to `patch_metadata.json`
+- `patches_dir` (str): Directory containing patch images
 
+**Returns**: None
 
-\*\*Output directories\*\*:
+**Attributes created**:
+- `self.metadata` (list): Loaded patch metadata
+- `self.patches_dir` (str): Path to patches
+- `self.transform` (Compose): ToTensor + ImageNet normalization
+- `self.cat_to_label` (dict): {1: 1, 2: 0}
 
-\- `./images\_split/train/224\_patches/`
+### `MitosisDataset.__getitem__(idx)`
 
-\- `./images\_split/val/224\_patches/`
+**Purpose**: Get image and label at index.
 
-\- `./images\_split/test/224\_patches/`
+**Args**:
+- `idx` (int): Index into dataset
 
+**Returns**:
+- `tuple`: `(image_tensor, label)` where:
+  - `image_tensor` (torch.Tensor): Shape (3, 224, 224), normalized
+  - `label` (int): 1 for mitotic, 0 for non-mitotic
 
+### `SimpleCNN.__init__(num_classes=2)`
 
-\*\*Returns\*\*: None
+**Purpose**: Initialize ResNet50 backbone with new classification head.
 
+**Args**:
+- `num_classes` (int): Number of output classes (default: 2)
 
+**Returns**: None
 
-\## 4. control\_run\_cnn.py
+### `SimpleCNN.forward(x)`
 
+**Purpose**: Forward pass through the network.
 
+**Args**:
+- `x` (torch.Tensor): Input tensor, shape (B, 3, 224, 224)
 
-\### `MitosisDataset.\_\_init\_\_(metadata\_path, patches\_dir)`
+**Returns**:
+- `torch.Tensor`: Logits, shape (B, num_classes)
 
-\*\*Purpose\*\*: Initialize dataset for baseline CNN.
+### `train_one_epoch(model, loader, loss_fn, optimizer, device)`
 
+**Purpose**: Train model for one epoch.
 
+**Args**:
+- `model` (SimpleCNN): Neural network model
+- `loader` (DataLoader): Training data loader
+- `loss_fn` (nn.Module): Loss function (CrossEntropyLoss)
+- `optimizer` (torch.optim): Optimizer (Adam)
+- `device` (torch.device): 'cuda' or 'cpu'
 
-\*\*Args\*\*:
+**Returns**:
+- `tuple`: `(avg_loss, accuracy)` where:
+  - `avg_loss` (float): Average loss over epoch
+  - `accuracy` (float): Training accuracy percentage
 
-\- `metadata\_path` (str): Path to `patch\_metadata.json`
+### `evaluate(model, loader, loss_fn, device)`
 
-\- `patches\_dir` (str): Directory containing patch images
+**Purpose**: Evaluate model on validation/test set.
 
+**Args**:
+- `model` (SimpleCNN): Neural network model
+- `loader` (DataLoader): Evaluation data loader
+- `loss_fn` (nn.Module): Loss function
+- `device` (torch.device): 'cuda' or 'cpu'
 
+**Returns**:
+- `tuple`: `(avg_loss, accuracy, all_preds, all_labels)` where:
+  - `avg_loss` (float): Average loss
+  - `accuracy` (float): Accuracy percentage
+  - `all_preds` (list): Predicted labels
+  - `all_labels` (list): Ground truth labels
 
-\*\*Returns\*\*: None
+### `plot_training_history(train_losses, train_accs, test_losses, test_accs)`
 
+**Purpose**: Plot and save training/validation curves.
 
+**Args**:
+- `train_losses` (list): Training loss per epoch
+- `train_accs` (list): Training accuracy per epoch
+- `test_losses` (list): Validation loss per epoch
+- `test_accs` (list): Validation accuracy per epoch
 
-\*\*Attributes created\*\*:
+**Returns**: None (saves `training_history.png`)
 
-\- `self.metadata` (list): Loaded patch metadata
+### `main()`
 
-\- `self.patches\_dir` (str): Path to patches
+**Purpose**: Main training pipeline for baseline CNN.
 
-\- `self.transform` (Compose): ToTensor + ImageNet normalization
+**Output files**:
+- `best_model.pth` - Best model weights
+- `training_history.png` - Loss/accuracy curves
 
-\- `self.cat\_to\_label` (dict): {1: 1, 2: 0}
+**Returns**: None
 
+## 5. control_run_cnn_deconvolution.py
 
+**Same functions as `control_run_cnn.py` with these additions:**
 
-\### `MitosisDataset.\_\_getitem\_\_(idx)`
+### `MitosisDataset.__init__(metadata_path, patches_dir, split='train')`
 
-\*\*Purpose\*\*: Get image and label at index.
+**Additional behavior**:
+- Converts RGB to hematoxylin channel via HistomicsTK color deconvolution
+- Applies robust percentile normalization [1%, 99%]
+- Inverts color (1.0 - h_img) for ResNet compatibility
+- Repeats single channel to 3 channels for ResNet50 input
 
+**Args**:
+- `split` (str): 'train', 'val', or 'test' - controls augmentation
 
+## 6. dann_w_image_aug.py
 
-\*\*Args\*\*:
+### `GradientReversalFunction.forward(ctx, x, lambda_val)`
 
-\- `idx` (int): Index into dataset
+**Purpose**: Identity function in forward pass.
 
+**Args**:
+- `ctx` (context): Context for saving tensors
+- `x` (torch.Tensor): Input tensor
+- `lambda_val` (float): GRL strength parameter
 
+**Returns**: `x.clone()` - identical tensor
 
-\*\*Returns\*\*:
+### `GradientReversalFunction.backward(ctx, grad_output)`
 
-\- `tuple`: `(image\_tensor, label)` where:
+**Purpose**: Reverse and scale gradients.
 
-&#x20; - `image\_tensor` (torch.Tensor): Shape (3, 224, 224), normalized
+**Args**:
+- `ctx` (context): Contains saved lambda_val
+- `grad_output` (torch.Tensor): Gradient from upper layers
 
-&#x20; - `label` (int): 1 for mitotic, 0 for non-mitotic
+**Returns**: `-lambda_val * grad_output, None`
 
+### `GradientReversalLayer.forward(x)`
 
+**Purpose**: Apply gradient reversal.
 
-\### `SimpleCNN.\_\_init\_\_(num\_classes=2)`
+**Args**:
+- `x` (torch.Tensor): Input tensor
 
-\*\*Purpose\*\*: Initialize ResNet50 backbone with new classification head.
+**Returns**: Reversed tensor
 
+### `MitosisDataset.__init__(metadata_path, patches_dir, csv_path, is_train=True)`
 
+**Purpose**: Initialize DANN dataset with domain labels.
 
-\*\*Args\*\*:
+**Args**:
+- `metadata_path` (str): Path to `patch_metadata.json`
+- `patches_dir` (str): Directory containing patch images
+- `csv_path` (str): Path to train/val/test.csv with domain columns
+- `is_train` (bool): If True, applies augmentation transforms
 
-\- `num\_classes` (int): Number of output classes (default: 2)
+**Returns**: None
 
+**Attributes**:
+- `self.domain_maps` (dict): Maps domain values to integer indices
+- `self.num_domain_classes` (dict): Number of classes per domain
 
+### `MitosisDataset.__getitem__(idx)`
 
-\*\*Returns\*\*: None
+**Purpose**: Get image, mitosis label, and domain labels.
 
+**Returns**:
+- `tuple`: `(image_tensor, mitosis_label, domain_labels_dict)` where:
+  - `image_tensor` (torch.Tensor): Shape (3, 224, 224)
+  - `mitosis_label` (int): 1 for mitotic, 0 for non-mitotic
+  - `domain_labels_dict` (dict): `{'Tumor': int, 'Species': int, 'Origin': int, 'Scanner': int}`
 
+### `collate_fn(batch)`
 
-\### `SimpleCNN.forward(x)`
+**Purpose**: Custom collate for batched domain labels.
 
-\*\*Purpose\*\*: Forward pass through the network.
+**Args**:
+- `batch` (list): List of tuples from `__getitem__`
 
+**Returns**:
+- `tuple`: `(images, labels, domain_labels)` where:
+  - `images` (torch.Tensor): Stacked images, shape (B, 3, 224, 224)
+  - `labels` (torch.Tensor): Mitosis labels, shape (B,)
+  - `domain_labels` (dict): Dict of tensors per attribute, shape (B,)
 
+### `DANNModel.__init__(num_classes=2, num_domain_classes=None, lambda_val=0.0)`
 
-\*\*Args\*\*:
+**Purpose**: Initialize multi-domain DANN model.
 
-\- `x` (torch.Tensor): Input tensor, shape (B, 3, 224, 224)
+**Args**:
+- `num_classes` (int): Binary classification (default: 2)
+- `num_domain_classes` (dict): `{'Tumor': int, 'Species': int, 'Origin': int, 'Scanner': int}`
+- `lambda_val` (float): Initial GRL strength (default: 0.0)
 
+**Returns**: None
 
+### `DANNModel.forward(x)`
 
-\*\*Returns\*\*:
+**Purpose**: Forward pass through feature extractor and all heads.
 
-\- `torch.Tensor`: Logits, shape (B, num\_classes)
+**Args**:
+- `x` (torch.Tensor): Input tensor, shape (B, 3, 224, 224)
 
+**Returns**:
+- `tuple`: `(mitosis_logits, domain_logits)` where:
+  - `mitosis_logits` (torch.Tensor): Shape (B, 2)
+  - `domain_logits` (dict): Dict of tensors per attribute
 
+### `DANNModel.set_lambda(val)`
 
-\### `train\_one\_epoch(model, loader, loss\_fn, optimizer, device)`
+**Purpose**: Update GRL strength for all domain adapters.
 
-\*\*Purpose\*\*: Train model for one epoch.
+**Args**:
+- `val` (float): New lambda value
 
+**Returns**: None
 
+### `DANNModel.predict_only(x)`
 
-\*\*Args\*\*:
+**Purpose**: Inference with only mitosis head (skip domain heads).
 
-\- `model` (SimpleCNN): Neural network model
+**Args**:
+- `x` (torch.Tensor): Input tensor
 
-\- `loader` (DataLoader): Training data loader
+**Returns**: `mitosis_logits` (torch.Tensor), shape (B, 2)
 
-\- `loss\_fn` (nn.Module): Loss function (CrossEntropyLoss)
+### `get_lambda(epoch, total_epochs, lambda_max=1.0)`
 
-\- `optimizer` (torch.optim): Optimizer (Adam)
+**Purpose**: Compute lambda schedule from DANN paper.
 
-\- `device` (torch.device): 'cuda' or 'cpu'
+**Args**:
+- `epoch` (int): Current epoch (0-indexed)
+- `total_epochs` (int): Total training epochs
+- `lambda_max` (float): Maximum lambda value (default: 1.0)
 
+**Returns**:
+- `float`: Lambda value for this epoch (ramps from 0 to lambda_max)
 
+**Formula**: `lambda_max * (2.0 / (1.0 + exp(-10 * epoch/total_epochs)) - 1.0)`
 
-\*\*Returns\*\*:
+### `train_one_epoch(model, loader, mitosis_loss_fn, domain_loss_fn, optimizer, device, lambda_val)`
 
-\- `tuple`: `(avg\_loss, accuracy)` where:
+**Purpose**: Train DANN for one epoch with adaptive weighting.
 
-&#x20; - `avg\_loss` (float): Average loss over epoch
+**Args**:
+- `model` (DANNModel): Multi-domain DANN model
+- `loader` (DataLoader): Training data loader
+- `mitosis_loss_fn` (nn.Module): CrossEntropyLoss for mitosis (with class weights)
+- `domain_loss_fn` (nn.Module): CrossEntropyLoss for domains (unweighted)
+- `optimizer` (torch.optim): Adam optimizer with differential LRs
+- `device` (torch.device): 'cuda' or 'cpu'
+- `lambda_val` (float): Current GRL strength
 
-&#x20; - `accuracy` (float): Training accuracy percentage
+**Returns**:
+- `tuple`: `(avg_loss, avg_mitosis_loss, avg_domain_loss, accuracy)`
 
+**Adaptive weight formula**: `adaptive_weight = running_mitosis_loss / (running_domain_loss + 1e-8)`
 
+**Final loss**: `loss = loss_mitosis + adaptive_weight * loss_domains`
 
-\### `evaluate(model, loader, loss\_fn, device)`
+### `evaluate(model, loader, mitosis_loss_fn, domain_loss_fn, device)`
 
-\*\*Purpose\*\*: Evaluate model on validation/test set.
+**Purpose**: Evaluate DANN on validation/test set.
 
+**Args**:
+- Same as `train_one_epoch` (without optimizer and lambda_val)
 
+**Returns**:
+- `tuple`: `(avg_loss, mitosis_acc, domain_accs, all_preds, all_labels)` where:
+  - `avg_loss` (float): Average combined loss
+  - `mitosis_acc` (float): Mitosis accuracy percentage
+  - `domain_accs` (dict): Per-domain accuracy percentages
+  - `all_preds` (list): Predicted mitosis labels
+  - `all_labels` (list): Ground truth mitosis labels
 
-\*\*Args\*\*:
+### `plot_training_history(history, chance_levels)`
 
-\- `model` (SimpleCNN): Neural network model
+**Purpose**: Plot 6-panel training history.
 
-\- `loader` (DataLoader): Evaluation data loader
+**Args**:
+- `history` (dict): Dictionary with keys: 'train_loss', 'test_loss', 'train_acc', 'test_acc', 'train_domain_accs', 'test_domain_accs'
+- `chance_levels` (dict): Per-domain chance levels (100 / num_classes)
 
-\- `loss\_fn` (nn.Module): Loss function
+**Returns**: None (saves `training_history.png`)
 
-\- `device` (torch.device): 'cuda' or 'cpu'
+### `extract_features(model, dataloader, device)`
 
+**Purpose**: Extract 2048-d features for UMAP visualization.
 
+**Args**:
+- `model` (DANNModel): Trained model
+- `dataloader` (DataLoader): Test data loader
+- `device` (torch.device): 'cuda' or 'cpu'
 
-\*\*Returns\*\*:
+**Returns**:
+- `tuple`: `(features, labels, domain_labels)` where:
+  - `features` (np.ndarray): Shape (N, 2048)
+  - `labels` (np.ndarray): Mitosis labels
+  - `domain_labels` (dict): Per-domain label arrays
 
-\- `tuple`: `(avg\_loss, accuracy, all\_preds, all\_labels)` where:
+### `plot_umap(features, labels, all_domain_labels, dataset, save_path)`
 
-&#x20; - `avg\_loss` (float): Average loss
+**Purpose**: Create 5-panel UMAP visualization.
 
-&#x20; - `accuracy` (float): Accuracy percentage
+**Args**:
+- `features` (np.ndarray): Feature matrix, shape (N, 2048)
+- `labels` (np.ndarray): Mitosis labels
+- `all_domain_labels` (dict): Per-domain label arrays
+- `dataset` (MitosisDataset): Dataset with domain maps for legend labels
+- `save_path` (str): Where to save the figure
 
-&#x20; - `all\_preds` (list): Predicted labels
+**Returns**: None (saves UMAP plot)
 
-&#x20; - `all\_labels` (list): Ground truth labels
+### `main()`
 
+**Purpose**: Complete DANN training pipeline.
 
+**Output files** (saved to current directory):
+- `best_dann_model.pth` - Best model weights
+- `training_history.png` - 6-panel training curves
+- `umap_dann.png` - UMAP visualization
 
-\### `plot\_training\_history(train\_losses, train\_accs, test\_losses, test\_accs)`
+**Returns**: None
 
-\*\*Purpose\*\*: Plot and save training/validation curves.
+## 7. dann_deconvolution.py
 
+**Similar to `dann_w_image_aug.py` with these differences:**
 
+### `MitosisDataset.__getitem__(idx)`
 
-\*\*Args\*\*:
+**Key difference**: Converts RGB to hematoxylin channel (1-channel input)
 
-\- `train\_losses` (list): Training loss per epoch
+**Returns**:
+- `image` (torch.Tensor): Shape (1, 224, 224) - single channel
+- (model internally converts to 1-channel input for ResNet)
 
-\- `train\_accs` (list): Training accuracy per epoch
+### `DANNModel.__init__()`
 
-\- `test\_losses` (list): Validation loss per epoch
+**Key difference**: First conv layer modified to accept 1-channel input
 
-\- `test\_accs` (list): Validation accuracy per epoch
+**Behavior**: 
+- Loads standard ResNet50
+- Replaces `conv1` (3-channel) with 1-channel version
+- Copies weights by averaging across original RGB channels
 
+## 8. final_model.py
 
+**Similar to `dann_w_image_aug.py` with these additions:**
 
-\*\*Returns\*\*: None (saves `training\_history.png`)
+### `ShotNoise.__init__(scale=0.05)`
 
+**Purpose**: Simulate photon counting noise (targets Scanner domain).
 
+**Args**:
+- `scale` (float): Noise magnitude (smaller = more photons = finer grain)
 
-\### `main()`
+**Returns**: None (callable)
 
-\*\*Purpose\*\*: Main training pipeline for baseline CNN.
+### `ShotNoise.__call__(img)`
 
+**Args**:
+- `img` (PIL.Image): Input image
 
+**Returns**: `PIL.Image` with Poisson noise applied
 
-\*\*Output files\*\*:
+### `DefocusBlur.__init__(kernel_size=9, sigma_low=1.5, sigma_high=4.0)`
 
-\- `best\_model.pth` - Best model weights
+**Purpose**: Simulate out-of-focus lens aberrations.
 
-\- `training\_history.png` - Loss/accuracy curves
+**Args**:
+- `kernel_size` (int): Gaussian blur kernel size
+- `sigma_low` (float): Minimum sigma
+- `sigma_high` (float): Maximum sigma
 
+**Returns**: None (callable)
 
+### `DANNModel.__init__()`
 
-\*\*Returns\*\*: None
+**Key difference**: Multi-scale feature extraction
 
+**Architecture**:
+- `self.stem` = conv1 + bn1 + relu + maxpool + layer1
+- `self.layer2`, `self.layer3`, `self.layer4` = ResNet stages
+- `self.pool2`, `self.pool3`, `self.pool4` = AdaptiveAvgPool2d(1)
+- Feature dimension = 512 + 1024 + 2048 = **3584**
 
+### `DANNModel.get_features(x)`
 
-\## 5. control\_run\_cnn\_deconvolution.py
+**Purpose**: Extract multi-scale features for UMAP.
 
+**Args**:
+- `x` (torch.Tensor): Input tensor
 
+**Returns**:
+- `torch.Tensor`: Concatenated features [B, 3584]
 
-\*\*Same functions as `control\_run\_cnn.py` with these additions:\*\*
+### `plot_auc(all_labels, all_probs, save_path)`
 
+**Purpose**: Generate ROC curve and compute AUC.
 
+**Args**:
+- `all_labels` (list): Ground truth labels (0/1)
+- `all_probs` (list): Softmax probability of class 1 (mitotic)
+- `save_path` (str): Output path for figure
 
-\### `MitosisDataset.\_\_init\_\_(metadata\_path, patches\_dir, split='train')`
+**Returns**:
+- `float`: ROC-AUC score
 
-\*\*Additional behavior\*\*:
+### `plot_f1_heatmap(all_preds, all_labels, all_domain_label_list, dataset, save_path)`
 
-\- Converts RGB to hematoxylin channel via HistomicsTK color deconvolution
+**Purpose**: Create per-tumor-type F1 heatmap.
 
-\- Applies robust percentile normalization \[1%, 99%]
+**Args**:
+- `all_preds` (list): Predicted labels
+- `all_labels` (list): Ground truth labels
+- `all_domain_label_list` (dict): Domain labels from evaluate()
+- `dataset` (MitosisDataset): Dataset with Tumor domain map
+- `save_path` (str): Output path for figure
 
-\- Inverts color (1.0 - h\_img) for ResNet compatibility
+**Returns**: None (saves F1 heatmap)
 
-\- Repeats single channel to 3 channels for ResNet50 input
+### `main()`
 
+**Purpose**: Complete multi-stage DANN training with multi-scale features.
 
+**Output files** (saved to `results/` directory):
+- `best_dann_model.pth` - Best model weights
+- `training_history.png` - 7-panel training curves
+- `auc_curve.png` - ROC curve with AUC
+- `f1_heatmap_tumor.png` - Per-tumor-type F1 scores
+- `umap_dann.png` - 5-panel UMAP visualization
 
-\*\*Args\*\*:
+**Returns**: None
 
-\- `split` (str): 'train', 'val', or 'test' - controls augmentation
+## Common Data Structures
 
-
-
-\## 6. dann\_w\_image\_aug.py
-
-
-
-\### `GradientReversalFunction.forward(ctx, x, lambda\_val)`
-
-\*\*Purpose\*\*: Identity function in forward pass.
-
-
-
-\*\*Args\*\*:
-
-\- `ctx` (context): Context for saving tensors
-
-\- `x` (torch.Tensor): Input tensor
-
-\- `lambda\_val` (float): GRL strength parameter
-
-
-
-\*\*Returns\*\*: `x.clone()` - identical tensor
-
-
-
-\### `GradientReversalFunction.backward(ctx, grad\_output)`
-
-\*\*Purpose\*\*: Reverse and scale gradients.
-
-
-
-\*\*Args\*\*:
-
-\- `ctx` (context): Contains saved lambda\_val
-
-\- `grad\_output` (torch.Tensor): Gradient from upper layers
-
-
-
-\*\*Returns\*\*: `-lambda\_val \* grad\_output, None`
-
-
-
-\### `GradientReversalLayer.forward(x)`
-
-\*\*Purpose\*\*: Apply gradient reversal.
-
-
-
-\*\*Args\*\*:
-
-\- `x` (torch.Tensor): Input tensor
-
-
-
-\*\*Returns\*\*: Reversed tensor
-
-
-
-\### `MitosisDataset.\_\_init\_\_(metadata\_path, patches\_dir, csv\_path, is\_train=True)`
-
-\*\*Purpose\*\*: Initialize DANN dataset with domain labels.
-
-
-
-\*\*Args\*\*:
-
-\- `metadata\_path` (str): Path to `patch\_metadata.json`
-
-\- `patches\_dir` (str): Directory containing patch images
-
-\- `csv\_path` (str): Path to train/val/test.csv with domain columns
-
-\- `is\_train` (bool): If True, applies augmentation transforms
-
-
-
-\*\*Returns\*\*: None
-
-
-
-\*\*Attributes\*\*:
-
-\- `self.domain\_maps` (dict): Maps domain values to integer indices
-
-\- `self.num\_domain\_classes` (dict): Number of classes per domain
-
-
-
-\### `MitosisDataset.\_\_getitem\_\_(idx)`
-
-\*\*Purpose\*\*: Get image, mitosis label, and domain labels.
-
-
-
-\*\*Returns\*\*:
-
-\- `tuple`: `(image\_tensor, mitosis\_label, domain\_labels\_dict)` where:
-
-&#x20; - `image\_tensor` (torch.Tensor): Shape (3, 224, 224)
-
-&#x20; - `mitosis\_label` (int): 1 for mitotic, 0 for non-mitotic
-
-&#x20; - `domain\_labels\_dict` (dict): `{'Tumor': int, 'Species': int, 'Origin': int, 'Scanner': int}`
-
-
-
-\### `collate\_fn(batch)`
-
-\*\*Purpose\*\*: Custom collate for batched domain labels.
-
-
-
-\*\*Args\*\*:
-
-\- `batch` (list): List of tuples from `\_\_getitem\_\_`
-
-
-
-\*\*Returns\*\*:
-
-\- `tuple`: `(images, labels, domain\_labels)` where:
-
-&#x20; - `images` (torch.Tensor): Stacked images, shape (B, 3, 224, 224)
-
-&#x20; - `labels` (torch.Tensor): Mitosis labels, shape (B,)
-
-&#x20; - `domain\_labels` (dict): Dict of tensors per attribute, shape (B,)
-
-
-
-\### `DANNModel.\_\_init\_\_(num\_classes=2, num\_domain\_classes=None, lambda\_val=0.0)`
-
-\*\*Purpose\*\*: Initialize multi-domain DANN model.
-
-
-
-\*\*Args\*\*:
-
-\- `num\_classes` (int): Binary classification (default: 2)
-
-\- `num\_domain\_classes` (dict): `{'Tumor': int, 'Species': int, 'Origin': int, 'Scanner': int}`
-
-\- `lambda\_val` (float): Initial GRL strength (default: 0.0)
-
-
-
-\*\*Returns\*\*: None
-
-
-
-\### `DANNModel.forward(x)`
-
-\*\*Purpose\*\*: Forward pass through feature extractor and all heads.
-
-
-
-\*\*Args\*\*:
-
-\- `x` (torch.Tensor): Input tensor, shape (B, 3, 224, 224)
-
-
-
-\*\*Returns\*\*:
-
-\- `tuple`: `(mitosis\_logits, domain\_logits)` where:
-
-&#x20; - `mitosis\_logits` (torch.Tensor): Shape (B, 2)
-
-&#x20; - `domain\_logits` (dict): Dict of tensors per attribute
-
-
-
-\### `DANNModel.set\_lambda(val)`
-
-\*\*Purpose\*\*: Update GRL strength for all domain adapters.
-
-
-
-\*\*Args\*\*:
-
-\- `val` (float): New lambda value
-
-
-
-\*\*Returns\*\*: None
-
-
-
-\### `DANNModel.predict\_only(x)`
-
-\*\*Purpose\*\*: Inference with only mitosis head (skip domain heads).
-
-
-
-\*\*Args\*\*:
-
-\- `x` (torch.Tensor): Input tensor
-
-
-
-\*\*Returns\*\*: `mitosis\_logits` (torch.Tensor), shape (B, 2)
-
-
-
-\### `get\_lambda(epoch, total\_epochs, lambda\_max=1.0)`
-
-\*\*Purpose\*\*: Compute lambda schedule from DANN paper.
-
-
-
-\*\*Args\*\*:
-
-\- `epoch` (int): Current epoch (0-indexed)
-
-\- `total\_epochs` (int): Total training epochs
-
-\- `lambda\_max` (float): Maximum lambda value (default: 1.0)
-
-
-
-\*\*Returns\*\*:
-
-\- `float`: Lambda value for this epoch (ramps from 0 to lambda\_max)
-
-
-
-\*\*Formula\*\*: `lambda\_max \* (2.0 / (1.0 + exp(-10 \* epoch/total\_epochs)) - 1.0)`
-
-
-
-\### `train\_one\_epoch(model, loader, mitosis\_loss\_fn, domain\_loss\_fn, optimizer, device, lambda\_val)`
-
-\*\*Purpose\*\*: Train DANN for one epoch with adaptive weighting.
-
-
-
-\*\*Args\*\*:
-
-\- `model` (DANNModel): Multi-domain DANN model
-
-\- `loader` (DataLoader): Training data loader
-
-\- `mitosis\_loss\_fn` (nn.Module): CrossEntropyLoss for mitosis (with class weights)
-
-\- `domain\_loss\_fn` (nn.Module): CrossEntropyLoss for domains (unweighted)
-
-\- `optimizer` (torch.optim): Adam optimizer with differential LRs
-
-\- `device` (torch.device): 'cuda' or 'cpu'
-
-\- `lambda\_val` (float): Current GRL strength
-
-
-
-\*\*Returns\*\*:
-
-\- `tuple`: `(avg\_loss, avg\_mitosis\_loss, avg\_domain\_loss, accuracy)`
-
-
-
-\*\*Adaptive weight formula\*\*: `adaptive\_weight = running\_mitosis\_loss / (running\_domain\_loss + 1e-8)`
-
-
-
-\*\*Final loss\*\*: `loss = loss\_mitosis + adaptive\_weight \* loss\_domains`
-
-
-
-\### `evaluate(model, loader, mitosis\_loss\_fn, domain\_loss\_fn, device)`
-
-\*\*Purpose\*\*: Evaluate DANN on validation/test set.
-
-
-
-\*\*Args\*\*:
-
-\- Same as `train\_one\_epoch` (without optimizer and lambda\_val)
-
-
-
-\*\*Returns\*\*:
-
-\- `tuple`: `(avg\_loss, mitosis\_acc, domain\_accs, all\_preds, all\_labels)` where:
-
-&#x20; - `avg\_loss` (float): Average combined loss
-
-&#x20; - `mitosis\_acc` (float): Mitosis accuracy percentage
-
-&#x20; - `domain\_accs` (dict): Per-domain accuracy percentages
-
-&#x20; - `all\_preds` (list): Predicted mitosis labels
-
-&#x20; - `all\_labels` (list): Ground truth mitosis labels
-
-
-
-\### `plot\_training\_history(history, chance\_levels)`
-
-\*\*Purpose\*\*: Plot 6-panel training history.
-
-
-
-\*\*Args\*\*:
-
-\- `history` (dict): Dictionary with keys: 'train\_loss', 'test\_loss', 'train\_acc', 'test\_acc', 'train\_domain\_accs', 'test\_domain\_accs'
-
-\- `chance\_levels` (dict): Per-domain chance levels (100 / num\_classes)
-
-
-
-\*\*Returns\*\*: None (saves `training\_history.png`)
-
-
-
-\### `extract\_features(model, dataloader, device)`
-
-\*\*Purpose\*\*: Extract 2048-d features for UMAP visualization.
-
-
-
-\*\*Args\*\*:
-
-\- `model` (DANNModel): Trained model
-
-\- `dataloader` (DataLoader): Test data loader
-
-\- `device` (torch.device): 'cuda' or 'cpu'
-
-
-
-\*\*Returns\*\*:
-
-\- `tuple`: `(features, labels, domain\_labels)` where:
-
-&#x20; - `features` (np.ndarray): Shape (N, 2048)
-
-&#x20; - `labels` (np.ndarray): Mitosis labels
-
-&#x20; - `domain\_labels` (dict): Per-domain label arrays
-
-
-
-\### `plot\_umap(features, labels, all\_domain\_labels, dataset, save\_path)`
-
-\*\*Purpose\*\*: Create 5-panel UMAP visualization.
-
-
-
-\*\*Args\*\*:
-
-\- `features` (np.ndarray): Feature matrix, shape (N, 2048)
-
-\- `labels` (np.ndarray): Mitosis labels
-
-\- `all\_domain\_labels` (dict): Per-domain label arrays
-
-\- `dataset` (MitosisDataset): Dataset with domain maps for legend labels
-
-\- `save\_path` (str): Where to save the figure
-
-
-
-\*\*Returns\*\*: None (saves UMAP plot)
-
-
-
-\### `main()`
-
-\*\*Purpose\*\*: Complete DANN training pipeline.
-
-
-
-\*\*Output files\*\* (saved to current directory):
-
-\- `best\_dann\_model.pth` - Best model weights
-
-\- `training\_history.png` - 6-panel training curves
-
-\- `umap\_dann.png` - UMAP visualization
-
-
-
-\*\*Returns\*\*: None
-
-
-
-\## 7. dann\_deconvolution.py
-
-
-
-\*\*Similar to `dann\_w\_image\_aug.py` with these differences:\*\*
-
-
-
-\### `MitosisDataset.\_\_getitem\_\_(idx)`
-
-\*\*Key difference\*\*: Converts RGB to hematoxylin channel (1-channel input)
-
-
-
-\*\*Returns\*\*:
-
-\- `image` (torch.Tensor): Shape (1, 224, 224) - single channel
-
-\- (model internally converts to 1-channel input for ResNet)
-
-
-
-\### `DANNModel.\_\_init\_\_()`
-
-\*\*Key difference\*\*: First conv layer modified to accept 1-channel input
-
-
-
-\*\*Behavior\*\*: 
-
-\- Loads standard ResNet50
-
-\- Replaces `conv1` (3-channel) with 1-channel version
-
-\- Copies weights by averaging across original RGB channels
-
-
-
-\## 8. final\_model.py
-
-
-
-\*\*Similar to `dann\_w\_image\_aug.py` with these additions:\*\*
-
-
-
-\### `ShotNoise.\_\_init\_\_(scale=0.05)`
-
-\*\*Purpose\*\*: Simulate photon counting noise (targets Scanner domain).
-
-
-
-\*\*Args\*\*:
-
-\- `scale` (float): Noise magnitude (smaller = more photons = finer grain)
-
-
-
-\*\*Returns\*\*: None (callable)
-
-
-
-\### `ShotNoise.\_\_call\_\_(img)`
-
-\*\*Args\*\*:
-
-\- `img` (PIL.Image): Input image
-
-
-
-\*\*Returns\*\*: `PIL.Image` with Poisson noise applied
-
-
-
-\### `DefocusBlur.\_\_init\_\_(kernel\_size=9, sigma\_low=1.5, sigma\_high=4.0)`
-
-\*\*Purpose\*\*: Simulate out-of-focus lens aberrations.
-
-
-
-\*\*Args\*\*:
-
-\- `kernel\_size` (int): Gaussian blur kernel size
-
-\- `sigma\_low` (float): Minimum sigma
-
-\- `sigma\_high` (float): Maximum sigma
-
-
-
-\*\*Returns\*\*: None (callable)
-
-
-
-\### `DANNModel.\_\_init\_\_()`
-
-\*\*Key difference\*\*: Multi-scale feature extraction
-
-
-
-\*\*Architecture\*\*:
-
-\- `self.stem` = conv1 + bn1 + relu + maxpool + layer1
-
-\- `self.layer2`, `self.layer3`, `self.layer4` = ResNet stages
-
-\- `self.pool2`, `self.pool3`, `self.pool4` = AdaptiveAvgPool2d(1)
-
-\- Feature dimension = 512 + 1024 + 2048 = \*\*3584\*\*
-
-
-
-\### `DANNModel.get\_features(x)`
-
-\*\*Purpose\*\*: Extract multi-scale features for UMAP.
-
-
-
-\*\*Args\*\*:
-
-\- `x` (torch.Tensor): Input tensor
-
-
-
-\*\*Returns\*\*:
-
-\- `torch.Tensor`: Concatenated features \[B, 3584]
-
-
-
-\### `plot\_auc(all\_labels, all\_probs, save\_path)`
-
-\*\*Purpose\*\*: Generate ROC curve and compute AUC.
-
-
-
-\*\*Args\*\*:
-
-\- `all\_labels` (list): Ground truth labels (0/1)
-
-\- `all\_probs` (list): Softmax probability of class 1 (mitotic)
-
-\- `save\_path` (str): Output path for figure
-
-
-
-\*\*Returns\*\*:
-
-\- `float`: ROC-AUC score
-
-
-
-\### `plot\_f1\_heatmap(all\_preds, all\_labels, all\_domain\_label\_list, dataset, save\_path)`
-
-\*\*Purpose\*\*: Create per-tumor-type F1 heatmap.
-
-
-
-\*\*Args\*\*:
-
-\- `all\_preds` (list): Predicted labels
-
-\- `all\_labels` (list): Ground truth labels
-
-\- `all\_domain\_label\_list` (dict): Domain labels from evaluate()
-
-\- `dataset` (MitosisDataset): Dataset with Tumor domain map
-
-\- `save\_path` (str): Output path for figure
-
-
-
-\*\*Returns\*\*: None (saves F1 heatmap)
-
-
-
-\### `main()`
-
-\*\*Purpose\*\*: Complete multi-stage DANN training with multi-scale features.
-
-
-
-\*\*Output files\*\* (saved to `results/` directory):
-
-\- `best\_dann\_model.pth` - Best model weights
-
-\- `training\_history.png` - 7-panel training curves
-
-\- `auc\_curve.png` - ROC curve with AUC
-
-\- `f1\_heatmap\_tumor.png` - Per-tumor-type F1 scores
-
-\- `umap\_dann.png` - 5-panel UMAP visualization
-
-
-
-\*\*Returns\*\*: None
-
-
-
-\## Common Data Structures
-
-
-
-\### patch\_metadata.json format
+### patch_metadata.json format
 
 ```json
-
-\[
-
-&#x20; {
-
-&#x20;   "patch\_name": "001\_ann0.tif",
-
-&#x20;   "image\_id": 1,
-
-&#x20;   "annotation\_id": 123,
-
-&#x20;   "category\_id": 1,
-
-&#x20;   "category\_name": "mitotic",
-
-&#x20;   "original\_bbox": \[100, 200, 300, 400],
-
-&#x20;   "patch\_coords": \[88, 188, 312, 412]
-
-&#x20; }
-
+[
+  {
+    "patch_name": "001_ann0.tif",
+    "image_id": 1,
+    "annotation_id": 123,
+    "category_id": 1,
+    "category_name": "mitotic",
+    "original_bbox": [100, 200, 300, 400],
+    "patch_coords": [88, 188, 312, 412]
+  }
 ]
-
 ```
 
-
-
-\### CSV format (train.csv / val.csv / test.csv)
+### CSV format (train.csv / val.csv / test.csv)
 
 | Slide | Tumor | Species | Origin | Scanner |
-
 |-------|-------|---------|--------|---------|
+| 001 | human_breast_cancer | human | AMC | Hamamatsu XR |
 
-| 001 | human\_breast\_cancer | human | AMC | Hamamatsu XR |
-
-
-
-\### COCO format (for annotations)
+### COCO format (for annotations)
 
 ```json
-
 {
-
-&#x20; "images": \[{"id": 1, "file\_name": "001.tif", "width": 7200, "height": 5400}],
-
-&#x20; "annotations": \[{"id": 1, "image\_id": 1, "bbox": \[x, y, w, h], "category\_id": 1, "iscrowd": 0}],
-
-&#x20; "categories": \[{"id": 1, "name": "cell"}]
-
+  "images": [{"id": 1, "file_name": "001.tif", "width": 7200, "height": 5400}],
+  "annotations": [{"id": 1, "image_id": 1, "bbox": [x, y, w, h], "category_id": 1, "iscrowd": 0}],
+  "categories": [{"id": 1, "name": "cell"}]
 }
-
 ```
-
 
 Gemini was used to help format and draft the documentation.md based on my original code. I reviewed and edited all descriptions for technical accuracy.
 
