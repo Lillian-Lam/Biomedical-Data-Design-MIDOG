@@ -9,6 +9,18 @@ pip install torch torchvision timm pillow tqdm
 ```
 The script sets `HF_ENDPOINT=https://hf-mirror.com` for those who cannot reach huggingface.co directly. Remove that line if not needed.
 
+## Configuration: Setting Your Image Path
+Before running any extraction script, you must update the path to where your MIDOG++ images are stored on your local machine.
+
+1. Open the script you wish to run.
+2. Locate the Configuration section at the top.
+3. Update the image_folder variable:
+
+```Python
+# CHANGE THIS: Point to your local folder containing .tiff files
+image_folder = '/path/to/your/local/MIDOGpp/images'
+```
+
 ## Usage
 Edit `image_folder` and `output_path` at the top of `dinov3.py`, then:
 ```bash
