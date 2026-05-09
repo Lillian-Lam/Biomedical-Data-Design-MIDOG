@@ -29,8 +29,8 @@ except ImportError:
 
 # Directory (adjust as needed)
 # Processing full whole slide images (7.2K x 5.4K)
-WSI_DIR = "/cis/home/nmisra2/MIDOG/MIDOGpp/images_split/train"  # Full WSI images
-OUTPUT_DIR = "/cis/home/nmisra2/MIDOG/MIDOGpp/images_split/cellpose"  # Output directory
+WSI_DIR = "./images"  # Full WSI images
+OUTPUT_DIR = "./Phase 2/preprocessing/cellpose_annotations" # Output directory
 
 # Helper to get all WSI files
 def get_wsi_files(wsi_dir):
