@@ -63,7 +63,7 @@ python "Phase 2/preprocessing/224_patch_around_bbox.py" \
 python "Phase 2/final_model.py"
 
 # Phase 3: train with MC Dropout, write per-patch confidence
-python "Phase 3/base_uncertainty.py"
+python "Phase 3/uncertainty_final_model.py"
 ```
 
 ## Repo layout
