@@ -19,7 +19,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 # Configuration
 model_name = 'ViT-B/32' # CLIP model
 if len(sys.argv) < 2:
-    print("Usage: python clip_feature_extractor.py <path_to_images_directory>")
+    print("Usage: python clipnet.py <path_to_images_directory>")
     sys.exit(1)
 
 image_folder = sys.argv[1]
