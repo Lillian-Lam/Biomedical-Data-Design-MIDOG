@@ -39,7 +39,7 @@ git clone https://github.com/DBO-DKFZ/multistain_cyclegan_normalization.git
 Python 3.9+, GPU recommended. Each phase has its own README with detailed steps.
 
 ## Usage
-Run the phases in order. Each script has path / hyperparameter constants at the top - edit those before running.
+Run the phases in order. Each script has hyperparameter constants - you can edit those before running.
 ```bash
 # Phase 1: pick an encoder, extract features, then quantify and fuse
 python "Phase 1/Feature_extractors/CTransPath/ctranspath_cycleGAN_norm.py" \
